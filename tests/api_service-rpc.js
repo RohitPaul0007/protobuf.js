@@ -1,8 +1,8 @@
-var tape = require("tape");
+let tape = require("tape");
 
-var protobuf = require("..");
+let protobuf = require("..");
 
-var proto = "syntax = \"proto3\";\
+let proto = "syntax = \"proto3\";\
 package myservice;\
 message DoSomethingRequest {\
 }\
@@ -17,9 +17,9 @@ service MyService {\
 }";
 
 tape.test("reflected services", function(test) {
-    var root = protobuf.parse(proto).root;
+    let root = protobuf.parse(proto).root;
 
-    var myservice = root.lookup("myservice").resolveAll(),
+    let myservice = root.lookup("myservice").resolveAll(),
         MyService = myservice.MyService,
         DoSomethingRequest = myservice.DoSomethingRequest,
         DoSomethingResponse = myservice.DoSomethingResponse,
@@ -42,16 +42,16 @@ tape.test("reflected services", function(test) {
         }
     }
 
-    var service = MyService.create(rpcImpl);
+    let service = MyService.create(rpcImpl);
 
     test.throws(function() {
         service.doSomething();
     }, TypeError, "should throw if request is not specified");
 
     test.test(test.name + " - should propagate errors from rpcImpl", function(test) {
-        var err = Error();
-        var service2 = MyService.create(function(method, requestData, callback) { callback(err); });
-        var count = 0;
+        let err = Error();
+        let service2 = MyService.create(function(method, requestData, callback) { callback(err); });
+        let count = 0;
         service2.on("error", function(err2) {
             test.equal(err2, err, "should emit the exact error");
             if (++count === 2)
@@ -65,9 +65,9 @@ tape.test("reflected services", function(test) {
     });
 
     test.test(test.name + " - should catch errors within rpcImpl", function(test) {
-        var err = Error();
-        var service2 = MyService.create(function(method, requestData, callback) { throw err; });
-        var count = 0;
+        let err = Error();
+        let service2 = MyService.create(function(method, requestData, callback) { throw err; });
+        let count = 0;
         service2.on("error", function(err2) {
             test.equal(err2, err, "should emit the exact error");
             if (++count === 2)
@@ -81,8 +81,8 @@ tape.test("reflected services", function(test) {
     });
 
     test.test(test.name + " - should return errors from decoding", function(test) {
-        var service2 = MyService.create(function(method, requestData, callback) { callback(null, protobuf.util.newBuffer(0) ); }, true, true);
-        var count = 0;
+        let service2 = MyService.create(function(method, requestData, callback) { callback(null, protobuf.util.newBuffer(0) ); }, true, true);
+        let count = 0;
         service2.on("error", function(err2) {
             test.ok(err2, "should emit the error");
             if (++count === 2)
@@ -95,12 +95,12 @@ tape.test("reflected services", function(test) {
         });
     });
 
-    var dataEmitted = false;
+    let dataEmitted = false;
     service.on("data", function(responseData) {
         dataEmitted = true;
         test.ok(responseData, "should emit the data event");
     });
-    var endCalled = false;
+    let endCalled = false;
     service.on("end", function() {
         test.notOk(endCalled, "should not emit the end event twice");
         endCalled = true;
