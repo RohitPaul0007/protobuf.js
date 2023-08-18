@@ -1,8 +1,8 @@
-var tape = require("tape");
+let tape = require("tape");
 
-var protobuf = require("..");
+let protobuf = require("..");
 
-var proto = "syntax = \"proto3\";\
+let proto = "syntax = \"proto3\";\
 message Message {\
     oneof kind {\
         string str = 1;\
@@ -17,11 +17,11 @@ enum Type {\
 }";
 
 tape.test("oneofs", function(test) {
-    var root = protobuf.parse(proto).root;
+    let root = protobuf.parse(proto).root;
 
-    var Message = root.lookup("Message");
+    let Message = root.lookup("Message");
 
-    var message = Message.create({
+    let message = Message.create({
         str: "a",
         num: 1,
         other: false
@@ -48,7 +48,7 @@ tape.test("oneofs", function(test) {
     test.equal(message.hasOwnProperty("num"), true, "should have the new value on the instance, not just the prototype");
 
     delete message.other;
-    var buf = Message.encode(message).finish();
+    let buf = Message.encode(message).finish();
     test.equal(buf.length, 2, "should write a total of 2 bytes");
     test.equal(buf[0], 16, "should write id 1, wireType 0");
     test.equal(buf[1], 0, "should write a value of 0");
