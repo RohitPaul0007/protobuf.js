@@ -1,6 +1,6 @@
-var tape = require("tape");
+let tape = require("tape");
 
-var protobuf = require("..");
+let protobuf = require("..");
 
 tape.test("reflected fields", function(test) {
 
@@ -33,12 +33,12 @@ tape.test("reflected fields", function(test) {
     }, TypeError, "should throw if options is specified but not an object");
 
     test.throws(function() {
-        var field = new protobuf.Field("a", 1, "UnDeFiNeD");
+        let field = new protobuf.Field("a", 1, "UnDeFiNeD");
         new protobuf.Root().add(new protobuf.Type("A").add(field));
         field.resolve();
     }, Error, "should throw if type cannot be resolved");
 
-    var root = new protobuf.Root(),
+    let root = new protobuf.Root(),
         type,
         field = new protobuf.Field("a", 1, "uint32", /* rule */ undefined, /* skipped extend, */ /* options */ {});
 
