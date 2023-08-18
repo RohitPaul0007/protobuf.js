@@ -1,8 +1,8 @@
-var tape = require("tape");
+let tape = require("tape");
 
-var protobuf = require("..");
+let protobuf = require("..");
 
-var def = {
+let def = {
     methods: {},
     nested: {
         SomeEnum: {
@@ -11,7 +11,7 @@ var def = {
     }
 };
 
-var methodDef = {
+let methodDef = {
     requestType: "MyRequest",
     requestStream: true,
     responseType: "MyResponse",
@@ -21,15 +21,15 @@ var methodDef = {
 
 tape.test("reflected services", function(test) {
 
-    var MyService = protobuf.Service.fromJSON("MyService", def);
+    let MyService = protobuf.Service.fromJSON("MyService", def);
     test.same(MyService.toJSON(), def, "should construct without methods from and convert back to JSON");
 
-    var MyMethod = protobuf.Method.fromJSON("MyMethod", methodDef);
+    let MyMethod = protobuf.Method.fromJSON("MyMethod", methodDef);
     test.same(MyMethod.toJSON(), methodDef, "should constructos methods from and convert back to JSON");
 
     MyService.add(MyMethod);
     test.ok(MyService.get("MyMethod"), "should allow adding methods");
-    var other = new protobuf.Enum("Other", {});
+    let other = new protobuf.Enum("Other", {});
     MyService.add(other);
     test.ok(MyService.get("Other"), "should allow adding other nested objects");
     MyService.remove(other);
