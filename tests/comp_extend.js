@@ -1,8 +1,8 @@
-var tape = require("tape");
+let tape = require("tape");
 
-var protobuf  = require("..");
+let protobuf  = require("..");
 
-var proto = "syntax = \"proto3\";\
+let proto = "syntax = \"proto3\";\
 message A {\
     message B {\
         message One {\
@@ -20,7 +20,7 @@ message A {\
 }";
 
 tape.test("extensions", function(test) {
-    var root = protobuf.parse(proto).root;
+    let root = protobuf.parse(proto).root;
     root.resolveAll();
     test.pass("should parse and resolve without errors");
     test.end();
