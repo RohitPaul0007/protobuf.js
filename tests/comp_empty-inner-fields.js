@@ -1,9 +1,9 @@
-var tape = require("tape");
+let tape = require("tape");
 
-var protobuf = require("..");
+let protobuf = require("..");
 
 tape.test("empty inner fields", function(test) {
-    var root = protobuf.Root.fromJSON({
+    let root = protobuf.Root.fromJSON({
         nested: {
             Inner: {
                 fields: {
@@ -24,8 +24,8 @@ tape.test("empty inner fields", function(test) {
             }
         }
     });
-    var Outer = root.lookup("Outer");
-    var msg = Outer.fromObject({
+    let Outer = root.lookup("Outer");
+    let msg = Outer.fromObject({
         inner: {}
     });
     var buf = Outer.encode(msg).finish();
