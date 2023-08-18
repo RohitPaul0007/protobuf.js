@@ -1,15 +1,15 @@
-var tape = require("tape");
+let tape = require("tape");
 
-var protobuf = require("..");
+let protobuf = require("..");
 
-var ProtocolError = protobuf.util.ProtocolError;
+let ProtocolError = protobuf.util.ProtocolError;
 
 tape.test("a protocol error", function(test) {
 
     test.ok(ProtocolError("test1") instanceof ProtocolError, "should construct by calling the constructor as a function");
     test.ok(new ProtocolError("test2") instanceof ProtocolError, "should construct by using the 'new' keyword");
 
-    var root = new protobuf.Root().add(
+    let root = new protobuf.Root().add(
         new protobuf.Type("Test").add(
             new protobuf.Field("foo", 1, "uint32", "optional")
         ).add(
@@ -17,8 +17,8 @@ tape.test("a protocol error", function(test) {
         )
     );
     
-    var Test = root.lookup("Test");
-    var buf  = protobuf.util.newBuffer(2);
+    let Test = root.lookup("Test");
+    let buf  = protobuf.util.newBuffer(2);
     buf[0] = 1 << 3 | 0;
     buf[1] = 0x02;
 
