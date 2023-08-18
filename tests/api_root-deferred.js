@@ -1,13 +1,13 @@
-var tape = require("tape");
+let tape = require("tape");
 
-var protobuf  = require(".."),
+let protobuf  = require(".."),
     Namespace = protobuf.Namespace,
     Type      = protobuf.Type,
     Field     = protobuf.Field;
 
 tape.test("extension fields", function(test) {
 
-    var root = new protobuf.Root({ noGoogleTypes: true }),
+    let root = new protobuf.Root({ noGoogleTypes: true }),
         ns = new Namespace("my"),
         type = new Type("DeclaringType"),
         declaringField = new Field("declaringField", 1, "string", "optional", "ExtendedType");
@@ -15,9 +15,9 @@ tape.test("extension fields", function(test) {
 
     test.deepEqual(root.deferred[0], declaringField, "should be deferred until their extended type can be resolved");
 
-    var extendedType = new Type("ExtendedType");
+    let extendedType = new Type("ExtendedType");
     ns.add(extendedType);
-    var extensionField = extendedType.get(declaringField.fullName);
+    let extensionField = extendedType.get(declaringField.fullName);
     test.equal(extensionField, declaringField.extensionField, "should become available once their extended type is known");
 
     type.remove(declaringField);
