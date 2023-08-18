@@ -1,13 +1,13 @@
 /*eslint-disable block-scoped-var, id-length, no-control-regex, no-magic-numbers, no-prototype-builtins, no-redeclare, no-shadow, no-var, sort-vars*/
 "use strict";
 
-var $protobuf = require("../../minimal");
+let $protobuf = require("../../minimal");
 
 // Common aliases
-var $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
+let $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
 
 // Exported root namespace
-var $root = $protobuf.roots.test_test || ($protobuf.roots.test_test = {});
+let $root = $protobuf.roots.test_test || ($protobuf.roots.test_test = {});
 
 $root.jspb = (function() {
 
@@ -16,7 +16,7 @@ $root.jspb = (function() {
      * @exports jspb
      * @namespace
      */
-    var jspb = {};
+    let jspb = {};
 
     jspb.test = (function() {
 
@@ -25,7 +25,7 @@ $root.jspb = (function() {
          * @memberof jspb
          * @namespace
          */
-        var test = {};
+        let test = {};
 
         test.Empty = (function() {
 
@@ -45,7 +45,7 @@ $root.jspb = (function() {
              */
             function Empty(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -104,9 +104,9 @@ $root.jspb = (function() {
             Empty.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.jspb.test.Empty();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.jspb.test.Empty();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     default:
                         reader.skipType(tag & 7);
@@ -210,7 +210,7 @@ $root.jspb = (function() {
          * @property {number} BAR=2 BAR value
          */
         test.OuterEnum = (function() {
-            var valuesById = {}, values = Object.create(valuesById);
+            let valuesById = {}, values = Object.create(valuesById);
             values[valuesById[1] = "FOO"] = 1;
             values[valuesById[2] = "BAR"] = 2;
             return values;
@@ -235,7 +235,7 @@ $root.jspb = (function() {
              */
             function EnumContainer(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -304,9 +304,9 @@ $root.jspb = (function() {
             EnumContainer.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.jspb.test.EnumContainer();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.jspb.test.EnumContainer();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.outerEnum = reader.int32();
@@ -368,7 +368,7 @@ $root.jspb = (function() {
             EnumContainer.fromObject = function fromObject(object) {
                 if (object instanceof $root.jspb.test.EnumContainer)
                     return object;
-                var message = new $root.jspb.test.EnumContainer();
+                let message = new $root.jspb.test.EnumContainer();
                 switch (object.outerEnum) {
                 case "FOO":
                 case 1:
@@ -394,7 +394,7 @@ $root.jspb = (function() {
             EnumContainer.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults)
                     object.outerEnum = options.enums === String ? "FOO" : 1;
                 if (message.outerEnum != null && message.hasOwnProperty("outerEnum"))
@@ -453,7 +453,7 @@ $root.jspb = (function() {
             function Simple1(properties) {
                 this.aRepeatedString = [];
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -508,7 +508,7 @@ $root.jspb = (function() {
                     writer = $Writer.create();
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.aString);
                 if (message.aRepeatedString != null && message.aRepeatedString.length)
-                    for (var i = 0; i < message.aRepeatedString.length; ++i)
+                    for (let i = 0; i < message.aRepeatedString.length; ++i)
                         writer.uint32(/* id 2, wireType 2 =*/18).string(message.aRepeatedString[i]);
                 if (message.aBoolean != null && Object.hasOwnProperty.call(message, "aBoolean"))
                     writer.uint32(/* id 3, wireType 0 =*/24).bool(message.aBoolean);
@@ -542,9 +542,9 @@ $root.jspb = (function() {
             Simple1.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.jspb.test.Simple1();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.jspb.test.Simple1();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.aString = reader.string();
@@ -599,7 +599,7 @@ $root.jspb = (function() {
                 if (message.aRepeatedString != null && message.hasOwnProperty("aRepeatedString")) {
                     if (!Array.isArray(message.aRepeatedString))
                         return "aRepeatedString: array expected";
-                    for (var i = 0; i < message.aRepeatedString.length; ++i)
+                    for (let i = 0; i < message.aRepeatedString.length; ++i)
                         if (!$util.isString(message.aRepeatedString[i]))
                             return "aRepeatedString: string[] expected";
                 }
@@ -620,14 +620,14 @@ $root.jspb = (function() {
             Simple1.fromObject = function fromObject(object) {
                 if (object instanceof $root.jspb.test.Simple1)
                     return object;
-                var message = new $root.jspb.test.Simple1();
+                let message = new $root.jspb.test.Simple1();
                 if (object.aString != null)
                     message.aString = String(object.aString);
                 if (object.aRepeatedString) {
                     if (!Array.isArray(object.aRepeatedString))
                         throw TypeError(".jspb.test.Simple1.aRepeatedString: array expected");
                     message.aRepeatedString = [];
-                    for (var i = 0; i < object.aRepeatedString.length; ++i)
+                    for (let i = 0; i < object.aRepeatedString.length; ++i)
                         message.aRepeatedString[i] = String(object.aRepeatedString[i]);
                 }
                 if (object.aBoolean != null)
@@ -647,7 +647,7 @@ $root.jspb = (function() {
             Simple1.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.arrays || options.defaults)
                     object.aRepeatedString = [];
                 if (options.defaults) {
@@ -658,7 +658,7 @@ $root.jspb = (function() {
                     object.aString = message.aString;
                 if (message.aRepeatedString && message.aRepeatedString.length) {
                     object.aRepeatedString = [];
-                    for (var j = 0; j < message.aRepeatedString.length; ++j)
+                    for (let j = 0; j < message.aRepeatedString.length; ++j)
                         object.aRepeatedString[j] = message.aRepeatedString[j];
                 }
                 if (message.aBoolean != null && message.hasOwnProperty("aBoolean"))
@@ -716,7 +716,7 @@ $root.jspb = (function() {
             function Simple2(properties) {
                 this.aRepeatedString = [];
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -763,7 +763,7 @@ $root.jspb = (function() {
                     writer = $Writer.create();
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.aString);
                 if (message.aRepeatedString != null && message.aRepeatedString.length)
-                    for (var i = 0; i < message.aRepeatedString.length; ++i)
+                    for (let i = 0; i < message.aRepeatedString.length; ++i)
                         writer.uint32(/* id 2, wireType 2 =*/18).string(message.aRepeatedString[i]);
                 return writer;
             };
@@ -795,9 +795,9 @@ $root.jspb = (function() {
             Simple2.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.jspb.test.Simple2();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.jspb.test.Simple2();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.aString = reader.string();
@@ -849,7 +849,7 @@ $root.jspb = (function() {
                 if (message.aRepeatedString != null && message.hasOwnProperty("aRepeatedString")) {
                     if (!Array.isArray(message.aRepeatedString))
                         return "aRepeatedString: array expected";
-                    for (var i = 0; i < message.aRepeatedString.length; ++i)
+                    for (let i = 0; i < message.aRepeatedString.length; ++i)
                         if (!$util.isString(message.aRepeatedString[i]))
                             return "aRepeatedString: string[] expected";
                 }
@@ -867,7 +867,7 @@ $root.jspb = (function() {
             Simple2.fromObject = function fromObject(object) {
                 if (object instanceof $root.jspb.test.Simple2)
                     return object;
-                var message = new $root.jspb.test.Simple2();
+                let message = new $root.jspb.test.Simple2();
                 if (object.aString != null)
                     message.aString = String(object.aString);
                 if (object.aRepeatedString) {
@@ -880,7 +880,7 @@ $root.jspb = (function() {
                 return message;
             };
 
-            /**
+            /*
              * Creates a plain object from a Simple2 message. Also converts values to other types if specified.
              * @function toObject
              * @memberof jspb.test.Simple2
@@ -892,7 +892,7 @@ $root.jspb = (function() {
             Simple2.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.arrays || options.defaults)
                     object.aRepeatedString = [];
                 if (options.defaults)
@@ -901,7 +901,7 @@ $root.jspb = (function() {
                     object.aString = message.aString;
                 if (message.aRepeatedString && message.aRepeatedString.length) {
                     object.aRepeatedString = [];
-                    for (var j = 0; j < message.aRepeatedString.length; ++j)
+                    for (let j = 0; j < message.aRepeatedString.length; ++j)
                         object.aRepeatedString[j] = message.aRepeatedString[j];
                 }
                 return object;
@@ -958,7 +958,7 @@ $root.jspb = (function() {
              */
             function SpecialCases(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -1053,9 +1053,9 @@ $root.jspb = (function() {
             SpecialCases.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.jspb.test.SpecialCases();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.jspb.test.SpecialCases();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.normal = reader.string();
@@ -1134,7 +1134,7 @@ $root.jspb = (function() {
             SpecialCases.fromObject = function fromObject(object) {
                 if (object instanceof $root.jspb.test.SpecialCases)
                     return object;
-                var message = new $root.jspb.test.SpecialCases();
+                let message = new $root.jspb.test.SpecialCases();
                 if (object.normal != null)
                     message.normal = String(object.normal);
                 if (object["default"] != null)
@@ -1158,7 +1158,7 @@ $root.jspb = (function() {
             SpecialCases.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults) {
                     object.normal = "";
                     object["default"] = "";
@@ -1230,7 +1230,7 @@ $root.jspb = (function() {
                 this.aRepeatedMessage = [];
                 this.aRepeatedString = [];
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -1305,10 +1305,10 @@ $root.jspb = (function() {
                 if (message.aNestedMessage != null && Object.hasOwnProperty.call(message, "aNestedMessage"))
                     $root.jspb.test.OptionalFields.Nested.encode(message.aNestedMessage, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
                 if (message.aRepeatedMessage != null && message.aRepeatedMessage.length)
-                    for (var i = 0; i < message.aRepeatedMessage.length; ++i)
+                    for (let i = 0; i < message.aRepeatedMessage.length; ++i)
                         $root.jspb.test.OptionalFields.Nested.encode(message.aRepeatedMessage[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
                 if (message.aRepeatedString != null && message.aRepeatedString.length)
-                    for (var i = 0; i < message.aRepeatedString.length; ++i)
+                    for (let i = 0; i < message.aRepeatedString.length; ++i)
                         writer.uint32(/* id 5, wireType 2 =*/42).string(message.aRepeatedString[i]);
                 return writer;
             };
@@ -1340,9 +1340,9 @@ $root.jspb = (function() {
             OptionalFields.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.jspb.test.OptionalFields();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.jspb.test.OptionalFields();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.aString = reader.string();
@@ -1413,8 +1413,8 @@ $root.jspb = (function() {
                 if (message.aRepeatedMessage != null && message.hasOwnProperty("aRepeatedMessage")) {
                     if (!Array.isArray(message.aRepeatedMessage))
                         return "aRepeatedMessage: array expected";
-                    for (var i = 0; i < message.aRepeatedMessage.length; ++i) {
-                        var error = $root.jspb.test.OptionalFields.Nested.verify(message.aRepeatedMessage[i]);
+                    for (let i = 0; i < message.aRepeatedMessage.length; ++i) {
+                        let error = $root.jspb.test.OptionalFields.Nested.verify(message.aRepeatedMessage[i]);
                         if (error)
                             return "aRepeatedMessage." + error;
                     }
@@ -1422,7 +1422,7 @@ $root.jspb = (function() {
                 if (message.aRepeatedString != null && message.hasOwnProperty("aRepeatedString")) {
                     if (!Array.isArray(message.aRepeatedString))
                         return "aRepeatedString: array expected";
-                    for (var i = 0; i < message.aRepeatedString.length; ++i)
+                    for (let i = 0; i < message.aRepeatedString.length; ++i)
                         if (!$util.isString(message.aRepeatedString[i]))
                             return "aRepeatedString: string[] expected";
                 }
@@ -1440,7 +1440,7 @@ $root.jspb = (function() {
             OptionalFields.fromObject = function fromObject(object) {
                 if (object instanceof $root.jspb.test.OptionalFields)
                     return object;
-                var message = new $root.jspb.test.OptionalFields();
+                let message = new $root.jspb.test.OptionalFields();
                 if (object.aString != null)
                     message.aString = String(object.aString);
                 if (object.aBool != null)
@@ -1454,7 +1454,7 @@ $root.jspb = (function() {
                     if (!Array.isArray(object.aRepeatedMessage))
                         throw TypeError(".jspb.test.OptionalFields.aRepeatedMessage: array expected");
                     message.aRepeatedMessage = [];
-                    for (var i = 0; i < object.aRepeatedMessage.length; ++i) {
+                    for (let i = 0; i < object.aRepeatedMessage.length; ++i) {
                         if (typeof object.aRepeatedMessage[i] !== "object")
                             throw TypeError(".jspb.test.OptionalFields.aRepeatedMessage: object expected");
                         message.aRepeatedMessage[i] = $root.jspb.test.OptionalFields.Nested.fromObject(object.aRepeatedMessage[i]);
@@ -1464,7 +1464,7 @@ $root.jspb = (function() {
                     if (!Array.isArray(object.aRepeatedString))
                         throw TypeError(".jspb.test.OptionalFields.aRepeatedString: array expected");
                     message.aRepeatedString = [];
-                    for (var i = 0; i < object.aRepeatedString.length; ++i)
+                    for (let i = 0; i < object.aRepeatedString.length; ++i)
                         message.aRepeatedString[i] = String(object.aRepeatedString[i]);
                 }
                 return message;
@@ -1482,7 +1482,7 @@ $root.jspb = (function() {
             OptionalFields.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.arrays || options.defaults) {
                     object.aRepeatedMessage = [];
                     object.aRepeatedString = [];
@@ -1500,12 +1500,12 @@ $root.jspb = (function() {
                     object.aNestedMessage = $root.jspb.test.OptionalFields.Nested.toObject(message.aNestedMessage, options);
                 if (message.aRepeatedMessage && message.aRepeatedMessage.length) {
                     object.aRepeatedMessage = [];
-                    for (var j = 0; j < message.aRepeatedMessage.length; ++j)
+                    for (let j = 0; j < message.aRepeatedMessage.length; ++j)
                         object.aRepeatedMessage[j] = $root.jspb.test.OptionalFields.Nested.toObject(message.aRepeatedMessage[j], options);
                 }
                 if (message.aRepeatedString && message.aRepeatedString.length) {
                     object.aRepeatedString = [];
-                    for (var j = 0; j < message.aRepeatedString.length; ++j)
+                    for (let j = 0; j < message.aRepeatedString.length; ++j)
                         object.aRepeatedString[j] = message.aRepeatedString[j];
                 }
                 return object;
@@ -1556,7 +1556,7 @@ $root.jspb = (function() {
                  */
                 function Nested(properties) {
                     if (properties)
-                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                             if (properties[keys[i]] != null)
                                 this[keys[i]] = properties[keys[i]];
                 }
