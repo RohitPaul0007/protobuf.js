@@ -1,8 +1,8 @@
-var tape = require("tape");
+let tape = require("tape");
 
-var protobuf = require("..");
+let protobuf = require("..");
 
-var objects = [
+let objects = [
     protobuf.Enum,
     protobuf.Field,
     protobuf.MapField,
@@ -13,13 +13,13 @@ var objects = [
     protobuf.Type
 ];
 
-var namespaces = [
+let namespaces = [
     protobuf.Root,
     protobuf.Service,
     protobuf.Type
 ];
 
-var fields = [
+let fields = [
     protobuf.MapField
 ];
 
