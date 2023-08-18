@@ -1,13 +1,13 @@
-var tape = require("tape");
+let tape = require("tape");
 
-var protobuf = require("..");
+let protobuf = require("..");
 
-var util = protobuf.util;
+let util = protobuf.util;
 
 tape.test("util", function(test) {
 
     test.test(test.name + " - merge", function(test) {
-        var o = {};
+        let o = {};
         util.merge(o, {});
         test.same(o, {}, "should do nothing if both objects are empty");
         util.merge(o, { a: 1 });
@@ -31,21 +31,21 @@ tape.test("util", function(test) {
 
     test.test(test.name + " - isSet", function(test) {
         // note that encoders don't check for default values either
-        var neverPresent = [
+        let neverPresent = [
             [],
             {},
             undefined,
             null
         ];
         neverPresent.forEach(function(value) {
-            var proto = {};
-            var instance = Object.create(proto);
+            let proto = {};
+            let instance = Object.create(proto);
             proto.p = value;
             instance.i = value;
             test.notOk(util.isSet(proto, "p"), "should return that " + JSON.stringify(value) + " on the prototype is not present");
             test.notOk(util.isSet(instance, "i"), "should return that " + JSON.stringify(value) + " on the instance is not present");
         });
-        var cases = {
+        let cases = {
             "arrays": [ [], [0] ],
             "objects": [ {}, {a:1} ],
             "strings": [ undefined, "" ],
@@ -53,10 +53,10 @@ tape.test("util", function(test) {
             "booleans": [ undefined, false ]
         };
         Object.keys(cases).forEach(function(name) {
-            var empty = cases[name][0],
+            let empty = cases[name][0],
                 value = cases[name][1];
-            var proto = {};
-            var instance = Object.create(proto);
+            let proto = {};
+            let instance = Object.create(proto);
             proto.pe = instance.ie = empty;
             proto.p = instance.i = value;
             if (empty !== undefined) { // not present anyway
@@ -71,7 +71,7 @@ tape.test("util", function(test) {
     });
 
     test.test(test.name + " - setProperty", function(test) {
-        var o = {};
+        let o = {};
 
         test.throws(function() {
             util.setProperty(5, 'prop1', 5);
