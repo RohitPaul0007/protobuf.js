@@ -1,11 +1,11 @@
-var tape = require("tape");
-var protobuf = require("..");
+let tape = require("tape");
+let protobuf = require("..");
 
 tape.test("Options", function (test) {
-    var root = protobuf.loadSync("tests/data/options_test.proto");
+    let root = protobuf.loadSync("tests/data/options_test.proto");
 
     test.test(test.name + " - field options (Int)", function (test) {
-        var TestFieldOptionsInt = root.lookup("TestFieldOptionsInt");
+        let TestFieldOptionsInt = root.lookup("TestFieldOptionsInt");
         test.equal(TestFieldOptionsInt.fields.field1.options["(fo_rep_int)"], 2, "should take second repeated int option");
         test.same(TestFieldOptionsInt.fields.field1.parsedOptions, [{"(fo_rep_int)": 1}, {"(fo_rep_int)": 2}], "should take all repeated int option");
 
@@ -15,7 +15,7 @@ tape.test("Options", function (test) {
     });
 
     test.test(test.name + " - message options (Int)", function (test) {
-        var TestMessageOptionsInt = root.lookup("TestMessageOptionsInt");
+        let TestMessageOptionsInt = root.lookup("TestMessageOptionsInt");
         test.equal(TestMessageOptionsInt.options["(mo_rep_int)"], 2, "should take second repeated int message option");
         test.equal(TestMessageOptionsInt.options["(mo_single_int)"], 3, "should correctly parse single int message option");
         test.same(TestMessageOptionsInt.parsedOptions, [{"(mo_rep_int)": 1}, {"(mo_rep_int)": 2}, {"(mo_single_int)": 3}], "should take all int message option");
@@ -23,7 +23,7 @@ tape.test("Options", function (test) {
     });
 
     test.test(test.name + " - field options (Message)", function (test) {
-        var TestFieldOptionsMsg = root.lookup("TestFieldOptionsMsg");
+        let TestFieldOptionsMsg = root.lookup("TestFieldOptionsMsg");
         test.equal(TestFieldOptionsMsg.fields.field1.options["(fo_rep_msg).value"], 4, "should take second repeated message option");
         test.equal(TestFieldOptionsMsg.fields.field1.options["(fo_rep_msg).rep_value"], 6, "should take second repeated int in second repeated option");
         test.same(TestFieldOptionsMsg.fields.field1.parsedOptions, [
@@ -36,7 +36,7 @@ tape.test("Options", function (test) {
     });
 
     test.test(test.name + " - message options (Message)", function (test) {
-        var TestMessageOptionsMsg = root.lookup("TestMessageOptionsMsg");
+        let TestMessageOptionsMsg = root.lookup("TestMessageOptionsMsg");
         test.equal(TestMessageOptionsMsg.options["(mo_rep_msg).value"], 5, "should take last repeated message option");
         test.equal(TestMessageOptionsMsg.options["(mo_rep_msg).rep_value"], 8, "should take last repeated int in last repeated option");
         test.equal(TestMessageOptionsMsg.options["(mo_single_msg).value"], 7, "should correctly parse single msg option");
@@ -51,7 +51,7 @@ tape.test("Options", function (test) {
     });
 
     test.test(test.name + " - field options (Nested)", function (test) {
-        var TestFieldOptionsNested = root.lookup("TestFieldOptionsNested");
+        let TestFieldOptionsNested = root.lookup("TestFieldOptionsNested");
         test.equal(TestFieldOptionsNested.fields.field1.options["(fo_rep_msg).value"], 1, "should merge repeated options messages");
         test.equal(TestFieldOptionsNested.fields.field1.options["(fo_rep_msg).rep_value"], 3, "should parse in any order");
         test.equal(TestFieldOptionsNested.fields.field1.options["(fo_rep_msg).nested.nested.value"], "x", "should correctly parse nested field options");
@@ -87,7 +87,7 @@ tape.test("Options", function (test) {
     });
 
     test.test(test.name + " - message options (Nested)", function (test) {
-        var TestMessageOptionsNested = root.lookup("TestMessageOptionsNested");
+        let TestMessageOptionsNested = root.lookup("TestMessageOptionsNested");
         test.equal(TestMessageOptionsNested.options["(mo_rep_msg).value"], 1, "should merge repeated options messages");
         test.equal(TestMessageOptionsNested.options["(mo_rep_msg).rep_value"], 3, "should parse in any order");
         test.equal(TestMessageOptionsNested.options["(mo_rep_msg).nested.nested.value"], "x", "should correctly parse nested field options");
@@ -119,7 +119,7 @@ tape.test("Options", function (test) {
     });
 
     test.test(test.name + " - rpc options (Nested)", function (test) {
-        var TestOptionsRpc = root.lookup("TestOptionsRpc");
+        let TestOptionsRpc = root.lookup("TestOptionsRpc");
         test.equal(TestOptionsRpc.options["(method_rep_msg).value"], 1, "should merge repeated options messages");
         test.equal(TestOptionsRpc.options["(method_rep_msg).rep_value"], 3, "should parse in any order");
         test.equal(TestOptionsRpc.options["(method_rep_msg).nested.nested.value"], "x", "should correctly parse nested field options");
@@ -130,7 +130,7 @@ tape.test("Options", function (test) {
         test.equal(TestOptionsRpc.options["(method_single_msg).rep_nested.value"], "y", "should take second repeated nested options");
         test.equal(TestOptionsRpc.options["(method_single_msg).rep_nested.nested.nested.value"], "y", "should correctly parse several nesting levels");
 
-        var expectedParsedOptions = [
+        let expectedParsedOptions = [
             {
                 "(method_rep_msg)": {
                     value: 1,
@@ -149,10 +149,10 @@ tape.test("Options", function (test) {
         ];
 
         test.same(TestOptionsRpc.parsedOptions, expectedParsedOptions, "should correctly parse all nested message options");
-        var jsonTestOptionsRpc = TestOptionsRpc.toJSON();
+        let jsonTestOptionsRpc = TestOptionsRpc.toJSON();
         test.same(jsonTestOptionsRpc.parsedOptions, expectedParsedOptions, "should correctly store all nested method options in JSON");
-        var rootFromJson = protobuf.Root.fromJSON(root.toJSON());
-        var TestOptionsRpcFromJson = rootFromJson.lookup("TestOptionsRpc");
+        let rootFromJson = protobuf.Root.fromJSON(root.toJSON());
+        let TestOptionsRpcFromJson = rootFromJson.lookup("TestOptionsRpc");
         test.same(TestOptionsRpcFromJson.parsedOptions, expectedParsedOptions, "should correctly read all nested method options from JSON");
         test.end();
     });
