@@ -1,7 +1,7 @@
 "use strict";
 // test currently consists only of not throwing
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
+let __extends = (this && this.__extends) || (function () {
+    let extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
@@ -13,20 +13,20 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+let __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    let c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    else for (let i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
+let __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 exports.__esModule = true;
 exports.AwesomeMessage = exports.AwesomeSubMessage = exports.AwesomeEnum = exports.Hello = void 0;
-var __1 = require("..");
+let __1 = require("..");
 // Reflection
-var root = __1.Root.fromJSON({
+let root = __1.Root.fromJSON({
     nested: {
         Hello: {
             fields: {
@@ -39,10 +39,10 @@ var root = __1.Root.fromJSON({
         }
     }
 });
-var HelloReflected = root.lookupType("Hello");
+let HelloReflected = root.lookupType("Hello");
 HelloReflected.create({ value: "hi" });
 // Custom classes
-var Hello = /** @class */ (function (_super) {
+let Hello = /** @class */ (function (_super) {
     __extends(Hello, _super);
     function Hello() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -56,17 +56,17 @@ var Hello = /** @class */ (function (_super) {
 exports.Hello = Hello;
 root.lookupType("Hello").ctor = Hello;
 Hello.create({ value: "hi" });
-var helloMessage = new Hello({ value: "hi" });
-var helloBuffer = Hello.encode(helloMessage.foo()).finish();
-var helloDecoded = Hello.decode(helloBuffer);
+let helloMessage = new Hello({ value: "hi" });
+let helloBuffer = Hello.encode(helloMessage.foo()).finish();
+let helloDecoded = Hello.decode(helloBuffer);
 // Decorators
 require("reflect-metadata");
-var AwesomeEnum;
+let AwesomeEnum;
 (function (AwesomeEnum) {
     AwesomeEnum[AwesomeEnum["ONE"] = 1] = "ONE";
     AwesomeEnum[AwesomeEnum["TWO"] = 2] = "TWO";
 })(AwesomeEnum = exports.AwesomeEnum || (exports.AwesomeEnum = {}));
-var AwesomeSubMessage = /** @class */ (function (_super) {
+let AwesomeSubMessage = /** @class */ (function (_super) {
     __extends(AwesomeSubMessage, _super);
     function AwesomeSubMessage() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -90,7 +90,7 @@ var AwesomeSubMessage = /** @class */ (function (_super) {
     return AwesomeSubMessage;
 }(__1.Message));
 exports.AwesomeSubMessage = AwesomeSubMessage;
-var AwesomeMessage = /** @class */ (function (_super) {
+let AwesomeMessage = /** @class */ (function (_super) {
     __extends(AwesomeMessage, _super);
     function AwesomeMessage() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -117,6 +117,6 @@ var AwesomeMessage = /** @class */ (function (_super) {
     return AwesomeMessage;
 }(__1.Message));
 exports.AwesomeMessage = AwesomeMessage;
-var awesomeMessage = new AwesomeMessage({ awesomeField: "hi" });
-var awesomeBuffer = AwesomeMessage.encode(awesomeMessage).finish();
-var awesomeDecoded = AwesomeMessage.decode(awesomeBuffer);
+let awesomeMessage = new AwesomeMessage({ awesomeField: "hi" });
+let awesomeBuffer = AwesomeMessage.encode(awesomeMessage).finish();
+let awesomeDecoded = AwesomeMessage.decode(awesomeBuffer);
