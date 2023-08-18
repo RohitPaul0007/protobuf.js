@@ -1,15 +1,15 @@
-var tape = require("tape");
+let tape = require("tape");
 
-var protobuf = require("..");
+let protobuf = require("..");
 
 tape.test("reflected enums", function(test) {
 
-    var enm = new protobuf.Enum("Test", {
+    let enm = new protobuf.Enum("Test", {
         a: 1,
         b: 2
     });
 
-    var enm_allow_alias = new protobuf.Enum( 'AliasTest',
+    let enm_allow_alias = new protobuf.Enum( 'AliasTest',
     { a: 0 }, { allow_alias: true } );
 
     test.throws(function() {
