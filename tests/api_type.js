@@ -1,12 +1,12 @@
-var tape = require("tape");
+let tape = require("tape");
 
-var protobuf = require("..");
+let protobuf = require("..");
 
-var def = {
+let def = {
     fields: {}
 };
 
-var def2 = {
+let def2 = {
     fields: {
         a: {
             type: "uint32",
@@ -35,7 +35,7 @@ var def2 = {
 
 tape.test("reflected types", function(test) {
 
-    var type = protobuf.Type.fromJSON("Test", def);
+    let type = protobuf.Type.fromJSON("Test", def);
     test.same(type.toJSON(), def, "should construct from and convert back to JSON");
     type = protobuf.Type.fromJSON("Test", def2);
     test.same(JSON.parse(JSON.stringify(type)), JSON.parse(JSON.stringify(def2)), "should construct from and convert back to JSON (complex parsed)");
