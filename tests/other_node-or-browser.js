@@ -1,8 +1,8 @@
-var tape = require("tape");
+let tape = require("tape");
 
-var protobuf = require("..");
+let protobuf = require("..");
 
-var util = protobuf.util;
+let util = protobuf.util;
 
 if (util.isNode)
     tape.test("under node.js", function(test) {
