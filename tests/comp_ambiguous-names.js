@@ -1,8 +1,8 @@
-var tape = require("tape");
+let tape = require("tape");
 
-var protobuf = require("..");
+let protobuf = require("..");
 
-var proto = "syntax = \"proto3\";\
+let proto = "syntax = \"proto3\";\
 message A {\
   string whatever = 1;\
 }\
