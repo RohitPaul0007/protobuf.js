@@ -1,13 +1,13 @@
 /*eslint-disable block-scoped-var, id-length, no-control-regex, no-magic-numbers, no-prototype-builtins, no-redeclare, no-shadow, no-var, sort-vars*/
 "use strict";
 
-var $protobuf = require("../../minimal");
+let $protobuf = require("../../minimal");
 
 // Common aliases
-var $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
+let $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
 
 // Exported root namespace
-var $root = $protobuf.roots.test_test || ($protobuf.roots.test_test = {});
+let $root = $protobuf.roots.test_test || ($protobuf.roots.test_test = {});
 
 $root.jspb = (function() {
 
@@ -16,7 +16,7 @@ $root.jspb = (function() {
      * @exports jspb
      * @namespace
      */
-    var jspb = {};
+    let jspb = {};
 
     jspb.test = (function() {
 
@@ -25,7 +25,7 @@ $root.jspb = (function() {
          * @memberof jspb
          * @namespace
          */
-        var test = {};
+        let test = {};
 
         test.Empty = (function() {
 
@@ -45,7 +45,7 @@ $root.jspb = (function() {
              */
             function Empty(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -104,9 +104,9 @@ $root.jspb = (function() {
             Empty.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.jspb.test.Empty();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.jspb.test.Empty();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     default:
                         reader.skipType(tag & 7);
@@ -210,7 +210,7 @@ $root.jspb = (function() {
          * @property {number} BAR=2 BAR value
          */
         test.OuterEnum = (function() {
-            var valuesById = {}, values = Object.create(valuesById);
+            let valuesById = {}, values = Object.create(valuesById);
             values[valuesById[1] = "FOO"] = 1;
             values[valuesById[2] = "BAR"] = 2;
             return values;
@@ -235,7 +235,7 @@ $root.jspb = (function() {
              */
             function EnumContainer(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -304,9 +304,9 @@ $root.jspb = (function() {
             EnumContainer.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.jspb.test.EnumContainer();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.jspb.test.EnumContainer();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.outerEnum = reader.int32();
@@ -368,7 +368,7 @@ $root.jspb = (function() {
             EnumContainer.fromObject = function fromObject(object) {
                 if (object instanceof $root.jspb.test.EnumContainer)
                     return object;
-                var message = new $root.jspb.test.EnumContainer();
+                let message = new $root.jspb.test.EnumContainer();
                 switch (object.outerEnum) {
                 case "FOO":
                 case 1:
@@ -394,7 +394,7 @@ $root.jspb = (function() {
             EnumContainer.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults)
                     object.outerEnum = options.enums === String ? "FOO" : 1;
                 if (message.outerEnum != null && message.hasOwnProperty("outerEnum"))
@@ -453,7 +453,7 @@ $root.jspb = (function() {
             function Simple1(properties) {
                 this.aRepeatedString = [];
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -508,7 +508,7 @@ $root.jspb = (function() {
                     writer = $Writer.create();
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.aString);
                 if (message.aRepeatedString != null && message.aRepeatedString.length)
-                    for (var i = 0; i < message.aRepeatedString.length; ++i)
+                    for (let i = 0; i < message.aRepeatedString.length; ++i)
                         writer.uint32(/* id 2, wireType 2 =*/18).string(message.aRepeatedString[i]);
                 if (message.aBoolean != null && Object.hasOwnProperty.call(message, "aBoolean"))
                     writer.uint32(/* id 3, wireType 0 =*/24).bool(message.aBoolean);
@@ -542,7 +542,7 @@ $root.jspb = (function() {
             Simple1.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.jspb.test.Simple1();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.jspb.test.Simple1();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
@@ -620,14 +620,14 @@ $root.jspb = (function() {
             Simple1.fromObject = function fromObject(object) {
                 if (object instanceof $root.jspb.test.Simple1)
                     return object;
-                var message = new $root.jspb.test.Simple1();
+                let message = new $root.jspb.test.Simple1();
                 if (object.aString != null)
                     message.aString = String(object.aString);
                 if (object.aRepeatedString) {
                     if (!Array.isArray(object.aRepeatedString))
                         throw TypeError(".jspb.test.Simple1.aRepeatedString: array expected");
                     message.aRepeatedString = [];
-                    for (var i = 0; i < object.aRepeatedString.length; ++i)
+                    for (let i = 0; i < object.aRepeatedString.length; ++i)
                         message.aRepeatedString[i] = String(object.aRepeatedString[i]);
                 }
                 if (object.aBoolean != null)
@@ -647,7 +647,7 @@ $root.jspb = (function() {
             Simple1.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.arrays || options.defaults)
                     object.aRepeatedString = [];
                 if (options.defaults) {
@@ -658,7 +658,7 @@ $root.jspb = (function() {
                     object.aString = message.aString;
                 if (message.aRepeatedString && message.aRepeatedString.length) {
                     object.aRepeatedString = [];
-                    for (var j = 0; j < message.aRepeatedString.length; ++j)
+                    for (let j = 0; j < message.aRepeatedString.length; ++j)
                         object.aRepeatedString[j] = message.aRepeatedString[j];
                 }
                 if (message.aBoolean != null && message.hasOwnProperty("aBoolean"))
