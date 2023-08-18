@@ -1,9 +1,9 @@
-var tape = require("tape");
+let tape = require("tape");
 
-var protobuf = require("../..");
+let protobuf = require("../..");
 
 tape.test("load sync", function(test) {
-    var root = protobuf.loadSync("tests/data/common.proto");
+    let root = protobuf.loadSync("tests/data/common.proto");
 
     test.ok(root.lookup("Something"), "should parse message Something");
 
@@ -11,7 +11,7 @@ tape.test("load sync", function(test) {
         protobuf.loadSync("tests/data/__NOTFOUND__", root);
     }, Error, "should throw if not found");
 
-    var isNode = protobuf.util.isNode;
+    let isNode = protobuf.util.isNode;
     try {
         protobuf.util.isNode = false;
         test.throws(function() {
@@ -37,8 +37,8 @@ tape.test("load sync", function(test) {
 });
 
 tape.test("should load bundled definitions even if resolvePath method was overrided", function(test) {
-    var protoFilePath = "tests/data/common.proto";
-    var root = new protobuf.Root();
+    let protoFilePath = "tests/data/common.proto";
+    let root = new protobuf.Root();
     root.resolvePath = (origin, target) => origin === "" && target === protoFilePath ? target : null;
 
     root.loadSync(protoFilePath);
