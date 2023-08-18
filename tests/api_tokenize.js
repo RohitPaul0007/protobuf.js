@@ -1,8 +1,8 @@
-var tape = require("tape");
+let tape = require("tape");
 
-var protobuf = require("..");
+let protobuf = require("..");
 
-var tokenize = protobuf.tokenize;
+let tokenize = protobuf.tokenize;
 
 tape.test("tokenize", function(test) {
 
@@ -17,7 +17,7 @@ tape.test("tokenize", function(test) {
     test.ok(expect("\"hello\\nworld\"", ["\"", "hello\nworld", "\"", null]), "should parse double quoted strings");
     test.ok(expectError("\"as\"d\""), "should throw for invalid strings");
 
-    var tn = tokenize("message Test {}");
+    let tn = tokenize("message Test {}");
     test.throws(function() {
         tn.skip("somethingelse", false);
     }, Error, "should throw when skipping non-optional tokens");
@@ -57,9 +57,9 @@ tape.test("tokenize", function(test) {
 });
 
 function expect(proto, expected) {
-    var tn = tokenize(proto);
-    var token;
-    var actual = [];
+    let tn = tokenize(proto);
+    let token;
+    let actual = [];
     do {
         actual.push(token = tn.next());
     } while (token !== null);
@@ -76,7 +76,7 @@ function expect(proto, expected) {
 }
 
 function expectError(proto) {
-    var tn = tokenize(proto);
+    let tn = tokenize(proto);
     try {
         while (tn.next());
         return null;
