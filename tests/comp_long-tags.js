@@ -1,8 +1,8 @@
-var tape = require("tape");
+let tape = require("tape");
 
-var protobuf = require("..");
+let protobuf = require("..");
 
-var root = protobuf.Root.fromJSON({
+let root = protobuf.Root.fromJSON({
     nested: {
         Message: {
             fields: {
@@ -17,9 +17,9 @@ var root = protobuf.Root.fromJSON({
 
 tape.test("long tags", function(test) {
 
-    var Message = root.lookup("Message");
-    var message = { val: 1 };
-    var buf = Message.encode(message).finish();
+    let Message = root.lookup("Message");
+    let message = { val: 1 };
+    let buf = Message.encode(message).finish();
     
     test.equal(buf[0], 0xf8, "should write F8 (78)");
     test.equal(buf[1], 0xff, "should write FF (7F)");
