@@ -1,6 +1,6 @@
-var tape = require("tape");
+let tape = require("tape");
 
-var protobuf  = require("..");
+let protobuf  = require("..");
 
 tape.test("converters", function(test) {
 
@@ -8,14 +8,14 @@ tape.test("converters", function(test) {
         if (err)
             return test.fail(err.message);
 
-        var Message = root.lookup("Message");
+        let Message = root.lookup("Message");
 
         test.test(test.name + " - Message#toObject", function(test) {
 
             test.plan(6);
 
             test.test(test.name + " - called with defaults = true", function(test) {
-                var obj = Message.toObject(Message.create(), { defaults: true });
+                let obj = Message.toObject(Message.create(), { defaults: true });
 
                 test.equal(obj.stringVal, "", "should set stringVal");
                 test.same(obj.stringRepeated, [], "should set stringRepeated");
@@ -35,7 +35,7 @@ tape.test("converters", function(test) {
             });
 
             test.test(test.name + " - called with defaults = undefined", function(test) {
-                var obj = Message.toObject(Message.create());
+                let obj = Message.toObject(Message.create());
 
                 test.equal(obj.stringVal, undefined, "should not set stringVal");
                 test.equal(obj.stringRepeated, undefined, "should not set stringRepeated");
@@ -55,7 +55,7 @@ tape.test("converters", function(test) {
             });
 
             test.test(test.name + " - called with arrays = true", function(test) {
-                var obj = Message.toObject(Message.create(), { arrays: true });
+                let obj = Message.toObject(Message.create(), { arrays: true });
 
                 test.equal(obj.stringVal, undefined, "should not set stringVal");
                 test.same(obj.stringRepeated, [], "should set stringRepeated");
@@ -75,7 +75,7 @@ tape.test("converters", function(test) {
             });
 
             test.test(test.name + " - called with objects = true", function(test) {
-                var obj = Message.toObject(Message.create(), { objects: true });
+                let obj = Message.toObject(Message.create(), { objects: true });
 
                 test.equal(obj.stringVal, undefined, "should not set stringVal");
                 test.equal(obj.stringRepeated, undefined, "should not set stringRepeated");
@@ -95,9 +95,9 @@ tape.test("converters", function(test) {
             });
 
             test.test(test.name + " - should convert", function(test) {
-                var buf = protobuf.util.newBuffer(3);
+                let buf = protobuf.util.newBuffer(3);
                 buf[0] = buf[1] = buf[2] = 49; // "111"
-                var msg = Message.create({
+                let msg = Message.create({
                     uint64Val: protobuf.util.Long.fromNumber(1),
                     uint64Repeated: [2, 3],
                     bytesVal: buf,
@@ -110,7 +110,7 @@ tape.test("converters", function(test) {
                     }
                 });
 
-                var msgLongsToNumber = Message.toObject(msg, { longs: Number }),
+                let msgLongsToNumber = Message.toObject(msg, { longs: Number }),
                     msgLongsToString = Message.toObject(msg, { longs: String });
 
                 test.same(Message.ctor.toObject(msg, { longs: Number}), msgLongsToNumber, "should convert the same using the static and the instance method");
@@ -133,7 +133,7 @@ tape.test("converters", function(test) {
             });
 
             test.test(test.name + " - Message.toObject with empty buffers", function(test) {
-                var msg = Message.create({
+                let msg = Message.create({
                     bytesVal: protobuf.util.newBuffer(0),
                 });
 
@@ -152,7 +152,7 @@ tape.test("converters", function(test) {
 
         test.test(test.name + " - Message.fromObject", function(test) {
 
-            var obj = {
+            let obj = {
                 uint64Val: 1,
                 uint64Repeated: [1, "2"],
                 bytesVal: "MTEx",
@@ -164,12 +164,12 @@ tape.test("converters", function(test) {
                     b: "3"
                 }
             };
-            var msg = Message.fromObject(obj);
+            let msg = Message.fromObject(obj);
 
             test.same(Message.ctor.fromObject(obj), msg, "should convert the same using the static and the instance method");
             test.equal(Message.fromObject(msg), msg, "should just return the object if already a runtime message");
 
-            var buf = protobuf.util.newBuffer(3);
+            let buf = protobuf.util.newBuffer(3);
             buf[0] = buf[1] = buf[2] = 49; // "111"
 
             test.same(msg.uint64Val, { low: 1, high: 0, unsigned: true }, "should set uint64Val from a number");
