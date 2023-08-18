@@ -1,6 +1,6 @@
-var tape = require("tape");
+let tape = require("tape");
 
-var protobuf = require("..");
+let protobuf = require("..");
 
 tape.test("proto comments", function(test) {
     test.plan(11);
@@ -28,8 +28,8 @@ tape.test("proto comments", function(test) {
 
 tape.test("proto comments with trailing comment preferred", function(test) {
     test.plan(11);
-    var options = {preferTrailingComment: true};
-    var root = new protobuf.Root();
+    let options = {preferTrailingComment: true};
+    let root = new protobuf.Root();
     root.load("tests/data/comments.proto", options, function(err, root) {
         if (err)
             throw test.fail(err.message);
