@@ -1,6 +1,6 @@
-var tape = require("tape");
+let tape = require("tape");
 
-var protobuf = require(".."),
+let protobuf = require(".."),
     Message  = protobuf.Message;
 
 tape.test("google.protobuf.Any class", function(test) {
@@ -16,9 +16,9 @@ tape.test("google.protobuf.Any class", function(test) {
         }
         root.lookup("google.protobuf.Any").ctor = Any;
 
-        var valueBuffer = protobuf.util.newBuffer(1);
+        let valueBuffer = protobuf.util.newBuffer(1);
         valueBuffer[0] = 0;
-        var any = new Any({
+        let any = new Any({
             type_url: "some.type",
             value: valueBuffer
         });
@@ -32,7 +32,7 @@ tape.test("google.protobuf.Any class", function(test) {
                 value: valueBuffer
             }, "should be populated with the contents we provided");
 
-            var buf;
+            let buf;
 
             test.test(test.name + " - should encode", function(test) {
 
