@@ -1,4 +1,4 @@
-var protobuf = require("..");
+let protobuf = require("..");
 
 if (protobuf.util.isNode)
     require("../lib/inquire/tests");
