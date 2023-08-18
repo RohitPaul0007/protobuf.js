@@ -1,10 +1,10 @@
-var tape = require("tape");
+let tape = require("tape");
 
-var protobuf = require("..");
+let protobuf = require("..");
 
-var def = {};
+let def = {};
 
-var proto = "package ns;\
+let proto = "package ns;\
 enum Enm {\
     ONE = 1;\
     TWO = 2;\
@@ -16,10 +16,10 @@ service Svc {}";
 
 tape.test("reflected namespaces", function(test) {
 
-    var ns = protobuf.Namespace.fromJSON("ns", def);
+    let ns = protobuf.Namespace.fromJSON("ns", def);
     test.same(ns.toJSON(), def, "should construct from and convert back to JSON");
 
-    var root = protobuf.parse(proto).root;
+    let root = protobuf.parse(proto).root;
     ns = root.lookup("ns").resolveAll();
     test.same(ns.getEnum("Enm"), { ONE: 1, TWO: 2 }, "should get enums");
 
@@ -83,7 +83,7 @@ tape.test("reflected namespaces", function(test) {
         ns.define(["", "sub"], {});
     }, "should throw when defining absolute [\"\", \"sub\"]");
 
-    var sub = ns.define("sub", {});
+    let sub = ns.define("sub", {});
     test.equal(ns.lookup("sub"), sub, "should define sub namespaces");
 
     test.throws(function() {
