@@ -1,13 +1,13 @@
-var tape = require("tape");
+let tape = require("tape");
 
-var protobuf = require("..");
+let protobuf = require("..");
 
-var def = {
+let def = {
     oneof: ["a", "b"],
     options: {}
 };
 
-var proto = "syntax = \"proto3\";\
+let proto = "syntax = \"proto3\";\
 import \"google/protobuf/descriptor.proto\";\
 extend google.protobuf.FileOptions { optional int32 ecs_component_id = 50000;}\
 option (ecs_component_id) = 1020;\
@@ -21,16 +21,16 @@ message Test {\
 
 tape.test("reflected oneofs", function(test) {
 
-    var oneof = protobuf.OneOf.fromJSON("kind", {
+    let oneof = protobuf.OneOf.fromJSON("kind", {
         oneof: ["a", "b"],
         options: {}
     });
     test.same(oneof.toJSON(), def, "should construct from and convert back to JSON");
 
-    var root = protobuf.parse(proto).root;
-    var Test = root.lookup("Test");
-    var kind = Test.get("kind");
-    var field = Test.get("c");
+    let root = protobuf.parse(proto).root;
+    let Test = root.lookup("Test");
+    let kind = Test.get("kind");
+    let field = Test.get("c");
 
     kind.add(field);
     test.same(kind.toJSON(), {
@@ -44,13 +44,13 @@ tape.test("reflected oneofs", function(test) {
     }, "should allow removing fields");
     test.ok(Test.get("c"), "should still have the field on the parent");
 
-    var Test2 = new protobuf.Type("Test2");
+    let Test2 = new protobuf.Type("Test2");
     root.add(Test2);
     Test2.add(field);
     kind.add(field);
     test.notOk(Test2.get("c"), "should remove the field from the previous parent");
 
-    var looseField = new protobuf.Field("d", 4, "float");
+    let looseField = new protobuf.Field("d", 4, "float");
     kind.add(looseField); // no parent
     Test.remove(looseField);
     Test.remove(kind);
