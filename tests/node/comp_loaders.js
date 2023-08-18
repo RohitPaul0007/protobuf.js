@@ -1,10 +1,10 @@
-var fs   = require("fs"),
+let fs   = require("fs"),
     path = require("path"),
     vm   = require("vm"),
     long = require("long"),
     tape = require("tape");
 
-var distPath = path.join(__dirname, "..", "..", "dist");
+let distPath = path.join(__dirname, "..", "..", "dist");
 
 [
     {
@@ -25,9 +25,9 @@ var distPath = path.join(__dirname, "..", "..", "dist");
     tape.test(dist.name + " build", function(test) {
 
         test.test(test.name + " - script tags", function(test) {
-            var sandbox;
+            let sandbox;
 
-            var dcodeIO = { Long: long };
+            let dcodeIO = { Long: long };
 
             vm.runInNewContext(dist.data, sandbox = {
                 window: {
@@ -42,9 +42,9 @@ var distPath = path.join(__dirname, "..", "..", "dist");
         });
 
         test.test(test.name + " - webworkers", function(test) {
-            var sandbox;
+            let sandbox;
 
-            var dcodeIO = { Long: long };
+            let dcodeIO = { Long: long };
 
             vm.runInNewContext(dist.data, sandbox = {
                 self: {
@@ -59,7 +59,7 @@ var distPath = path.join(__dirname, "..", "..", "dist");
         });
 
         test.test(test.name + " - amd loaders", function(test) {
-            var sandbox;
+            let sandbox;
 
             function fakeDefine(deps, factory) {
                 test.same(deps, [ "long" ], "should request long.js as a dependency");
