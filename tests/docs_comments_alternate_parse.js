@@ -1,11 +1,11 @@
-var tape = require("tape");
+let tape = require("tape");
 
-var protobuf = require("..");
+let protobuf = require("..");
 
 tape.test("proto comments in alternate-parse mode", function(test) {
     test.plan(24);
-    var options = {alternateCommentMode: true};
-    var root = new protobuf.Root();
+    let options = {alternateCommentMode: true};
+    let root = new protobuf.Root();
     root.load("tests/data/comments-alternate-parse.proto", options, function(err, root) {
         if (err)
             throw test.fail(err.message);
@@ -44,8 +44,8 @@ tape.test("proto comments in alternate-parse mode", function(test) {
 
 tape.test("proto comments in alternate-parse mode with trailing comment preferred", function(test) {
     test.plan(24);
-    var options = {alternateCommentMode: true, preferTrailingComment: true};
-    var root = new protobuf.Root();
+    let options = {alternateCommentMode: true, preferTrailingComment: true};
+    let root = new protobuf.Root();
     root.load("tests/data/comments-alternate-parse.proto", options, function(err, root) {
         if (err)
             throw test.fail(err.message);
