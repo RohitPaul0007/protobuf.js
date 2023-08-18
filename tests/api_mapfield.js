@@ -1,8 +1,8 @@
-var tape = require("tape");
+let tape = require("tape");
 
-var protobuf = require("..");
+let protobuf = require("..");
 
-var def = {
+let def = {
     keyType: "bytes",
     type: "string",
     id: 1
@@ -10,7 +10,7 @@ var def = {
 
 tape.test("reflected map fields", function(test) {
 
-    var field = protobuf.MapField.fromJSON("a", def);
+    let field = protobuf.MapField.fromJSON("a", def);
     test.same(field.toJSON(), def, "should construct from and convert back to JSON");
 
     test.throws(function() {
