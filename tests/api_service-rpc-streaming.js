@@ -1,6 +1,6 @@
-var tape = require("tape");
+let tape = require("tape");
 
-var protobuf = require("..");
+let protobuf = require("..");
 
 tape.test("runtime services", function(test) {
 
@@ -10,13 +10,13 @@ tape.test("runtime services", function(test) {
         if (err)
             return test.fail(err.message);
 
-        var MyService  = root.lookup("MyService"),
+        let MyService  = root.lookup("MyService"),
             MyMethod   = MyService.get("MyMethod").resolve(),
             MyRequest  = MyMethod.resolvedRequestType,
             MyResponse = MyMethod.resolvedResponseType;
 
-        var statusCodes = [200, 400];
-        var timesCalled = 0;
+        let statusCodes = [200, 400];
+        let timesCalled = 0;
        
         MyService = root.lookup("MyService");
 
@@ -40,7 +40,7 @@ tape.test("runtime services", function(test) {
                         test.end();
                     });
                     setTimeout(function() {
-                        var status = statusCodes.shift();
+                        let status = statusCodes.shift();
                         callback(null, MyResponse.encode({
                             status: status
                         }).finish());
@@ -52,7 +52,7 @@ tape.test("runtime services", function(test) {
                 }
             }
 
-            var service = MyService.create(rpc, true, false);
+            let service = MyService.create(rpc, true, false);
             service.myMethod(MyRequest.create({
                 path: "/"
             }), function(err, response) {
@@ -85,7 +85,7 @@ tape.test("runtime services", function(test) {
                         test.end();
                     });
                     setTimeout(function() {
-                        var status = statusCodes.shift();
+                        let status = statusCodes.shift();
                         callback(null, MyResponse.encode({
                             status: status
                         }).finish());
@@ -97,7 +97,7 @@ tape.test("runtime services", function(test) {
                 }
             }
 
-            var service = MyService.create(rpc, true, false);
+            let service = MyService.create(rpc, true, false);
             service.myMethod(MyRequest.create({
                 path: "/"
             }), function(err, response) {
@@ -109,12 +109,12 @@ tape.test("runtime services", function(test) {
                 }, "should return status 400");
                 service.end(); // ended client-side
 
-                var count = 0,
+                let count = 0,
                     total = 1;
 
                 if (typeof Promise !== "undefined") {
                     ++total;
-                    var promise = service.myMethod(MyRequest.create({ path: "/" }));
+                    let promise = service.myMethod(MyRequest.create({ path: "/" }));
                     promise.catch(function(err) {
                         test.ok(err, "should return an error if already ended (Promise)");
                         if (++count === total)
@@ -150,7 +150,7 @@ function fakeRPC(test) {
                 test.end();
             });
             setTimeout(function() {
-                var status = statusCodes.shift();
+                let status = statusCodes.shift();
                 callback(null, MyResponse.encode({
                     status: status
                 }).finish());
