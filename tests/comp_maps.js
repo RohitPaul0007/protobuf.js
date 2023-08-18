@@ -1,8 +1,8 @@
-var tape = require("tape");
+let tape = require("tape");
 
-var protobuf = require("..");
+let protobuf = require("..");
 
-var root = protobuf.Root.fromJSON({
+let root = protobuf.Root.fromJSON({
     nested: {
         Inner: {
             fields: {
@@ -29,22 +29,22 @@ var root = protobuf.Root.fromJSON({
     }
 });
 
-var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+let chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
 function randomString(len) {
-    var str = "";
-    for (var i = 0; i < len; ++i)
+    let str = "";
+    for (let i = 0; i < len; ++i)
         str += chars.charAt((Math.random() * chars.length)|0);
     return str;
 }
 
 function randomMap() {
-    var map = {};
-    for (var i = 0; i < 10; ++i) {
-        var values = [];
-        for (var j = 0; j < 10; ++j)
+    let map = {};
+    for (let i = 0; i < 10; ++i) {
+        let values = [];
+        for (let j = 0; j < 10; ++j)
             values.push(randomString(10));
-        var key; do { key = randomString(10); } while(map[key]);
+        let key; do { key = randomString(10); } while(map[key]);
         map[key] = {
             key: randomString(10),
             values: values
@@ -54,14 +54,14 @@ function randomMap() {
 }
 
 tape.test("maps", function(test) {
-    var Inner = root.lookup("Inner"),
+    let Inner = root.lookup("Inner"),
         Outer = root.lookup("Outer");
 
     test.test(test.name + " - randomly generated", function(test) {
 
-        var outer = { value: randomMap() };
-        var buf = Outer.encode(outer).finish();
-        var dec = Outer.decode(buf);
+        let outer = { value: randomMap() };
+        let buf = Outer.encode(outer).finish();
+        let dec = Outer.decode(buf);
 
         test.deepEqual(dec, outer, "should decode back the original random map");
 
@@ -70,7 +70,7 @@ tape.test("maps", function(test) {
 
     test.test(test.name + " - specifically crafted", function(test) {
 
-        var outer = {
+        let outer = {
             value: {
                 b: {
                     key: "1",
