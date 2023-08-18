@@ -1,8 +1,8 @@
-var tape = require("tape");
+let tape = require("tape");
 
-var protobuf = require("..");
+let protobuf = require("..");
 
-var Writer = protobuf.Writer,
+let Writer = protobuf.Writer,
     Reader = protobuf.Reader;
 
 tape.test("writer & reader", function(test) {
@@ -17,7 +17,7 @@ tape.test("writer & reader", function(test) {
 
     // uint32, int32, sint32
 
-    var values = [
+    let values = [
         [ 0, [ 0 ] ],
         [ 127, [ 127 ] ],
         [ 128, [ 128, 1] ],
@@ -32,7 +32,7 @@ tape.test("writer & reader", function(test) {
     values.forEach(function(val) {
          test.ok(expect("uint32", val[0] >>> 0, val[1]), "should write " + val[0] + " as an unsigned varint of length " + val[1].length + " and read it back equally");
          test.ok(expect("int32", val[0] | 0, val[1]), "should write " + val[0] + " as a signed varint of length " + val[1].length + " and read it back equally");
-         var zzBaseVal = val[0] >>> 1 ^ -(val[0] & 1) | 0;
+         let zzBaseVal = val[0] >>> 1 ^ -(val[0] & 1) | 0;
          test.ok(expect("sint32", zzBaseVal, val[1]), "should write " + zzBaseVal + " as a signed zig-zag encoded varint of length " + val[1].length + " and read it back equally");
     });
 
@@ -46,12 +46,12 @@ tape.test("writer & reader", function(test) {
         values.forEach(function(val) {
             // the same for all sorts of writers anyway
 
-            var buffer = Writer.create().fixed32(val[0]).finish();
-            var comp = new Uint8Array(new Uint32Array([ val[0] ]).buffer);
+            let buffer = Writer.create().fixed32(val[0]).finish();
+            let comp = new Uint8Array(new Uint32Array([ val[0] ]).buffer);
             test.same(Array.prototype.slice.call(buffer), Array.prototype.slice.call(comp), "should write " + val[0] + " as fixed 32 bits");
             test.equal(Reader.create(buffer).fixed32(), val[0], "should read back "+ val[0] + " equally");
 
-            var signedVal = val[0] | 0;
+            let signedVal = val[0] | 0;
             buffer = Writer.create().sfixed32(signedVal).finish();
             comp = new Uint8Array(new Uint32Array([ val[0] ]).buffer);
             test.same(Array.prototype.slice.call(buffer), Array.prototype.slice.call(comp), "should write " + signedVal + " as fixed 32 bits (signed)");
@@ -72,11 +72,11 @@ tape.test("writer & reader", function(test) {
 
     test.ok(protobuf.util.Long, "should use long.js");
     values.forEach(function(val) {
-        var longVal = protobuf.util.Long.fromNumber(val[0], false);
+        let longVal = protobuf.util.Long.fromNumber(val[0], false);
         
         test.ok(expect("uint64", longVal, val[1]), "should write " + longVal + " as an unsigned varint of length " + val[1].length + " and read it back equally");
         test.ok(expect("int64", longVal, val[1]), "should write " + longVal + " as a signed varint of length " + val[1].length + " and read it back equally");
-        var zzBaseVal = longVal.shru(1).xor(longVal.and(1).negate());
+        let zzBaseVal = longVal.shru(1).xor(longVal.and(1).negate());
         test.ok(expect("sint64", zzBaseVal, val[1]), "should write " + zzBaseVal + " as a signed zig-zag encoded varint of length " + val[1].length + " and read it back equally");
     });
 
@@ -105,7 +105,7 @@ tape.test("writer & reader", function(test) {
     // skipType
 
     test.test(test.name + " - should allow to skip", function(test) {
-        var reader = Reader.create(Writer.create()
+        let reader = Reader.create(Writer.create()
             .uint32(1)
             .double(0.1)
             .string("123")
@@ -135,24 +135,24 @@ tape.test("writer & reader", function(test) {
 function expect(type, value, expected, WriterToTest) {
     if (!WriterToTest)
         WriterToTest = Writer.create().constructor;
-    var writer = new WriterToTest();
-    var actual = writer[type](value).finish();
+    let writer = new WriterToTest();
+    let actual = writer[type](value).finish();
     if (actual.length !== expected.length) {
         console.error("actual", Array.prototype.slice.call(actual), "!= expected", expected);
         return false;
     }
-    for (var i = 0; i < expected.length; ++i)
+    for (let i = 0; i < expected.length; ++i)
         if (actual[i] !== expected[i]) {
             console.error("actual", Array.prototype.slice.call(actual), "!= expected", expected);
             return false;
         }
-    var longActual = protobuf.util.newBuffer(20);
-    for (var l = 0; l < actual.length; ++l)
+    let longActual = protobuf.util.newBuffer(20);
+    for (let l = 0; l < actual.length; ++l)
         longActual[l] = actual[l];
     [ actual, longActual ] // also test readLongVarint fast route
     .forEach(function(actual) {
-        var reader = Reader.create(actual);
-        var actualValue = reader[type]();
+        let reader = Reader.create(actual);
+        let actualValue = reader[type]();
         if (typeof actualValue === "object") { // buffer
             var buf;
             if (typeof value === "string") { // initial value is a base64 encoded string
@@ -162,7 +162,7 @@ function expect(type, value, expected, WriterToTest) {
                 buf = value;
             if (buf.length !== actualValue.length)
                 return false;
-            for (var j = 0; j < buf.length; ++j)
+            for (let j = 0; j < buf.length; ++j)
                 if (actualValue[j] !== buf[j])
                     return false;
         } else if (actualValue !== value) {
