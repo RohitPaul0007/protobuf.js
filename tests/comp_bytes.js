@@ -1,8 +1,8 @@
-var tape = require("tape");
+let tape = require("tape");
 
-var protobuf = require("..");
+let protobuf = require("..");
 
-var oldBufferImpl = Buffer.alloc === undefined;
+let oldBufferImpl = Buffer.alloc === undefined;
 
 // extends Buffer
 (CustomBuffer.prototype = Object.create(Buffer.prototype)).constructor = CustomBuffer;
@@ -49,12 +49,12 @@ CustomBuffer.prototype.slice = function (start, end) {
 }
 
 tape.test("configure a custom encoder/decoder for bytes", function(test) {
-    var oldBuffer = protobuf.util.Buffer;
+    let oldBuffer = protobuf.util.Buffer;
 
     protobuf.util.Buffer = CustomBuffer;
     protobuf.configure();
 
-    var root = protobuf.Root.fromJSON({
+    let root = protobuf.Root.fromJSON({
         nested: {
             test: {
                 nested: {
@@ -71,14 +71,14 @@ tape.test("configure a custom encoder/decoder for bytes", function(test) {
         }
     });
 
-    var Test = root.lookup("test.Test");
+    let Test = root.lookup("test.Test");
 
-    var buffer = Test.encode({
+    let buffer = Test.encode({
         data: CustomBuffer.from('some-data')
     }).finish();
     test.ok(CustomBuffer.isCustom(buffer), "should encode the message with a custom buffer");
 
-    var decoded = Test.decode(buffer);
+    let decoded = Test.decode(buffer);
     test.ok(CustomBuffer.isCustom(decoded.data), "should decode `data` into a custom buffer");
 
     protobuf.util.Buffer = oldBuffer;
