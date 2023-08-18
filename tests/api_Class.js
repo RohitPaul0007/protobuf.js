@@ -1,12 +1,12 @@
-var tape = require("tape");
+let tape = require("tape");
 
-var protobuf = require("..");
+let protobuf = require("..");
 
-var proto = "message Something {}";
+let proto = "message Something {}";
 
 tape.test("reflected classes", function(test) {
 
-    var root = protobuf.parse(proto).root,
+    let root = protobuf.parse(proto).root,
         Something = root.lookup("Something");
 
     test.throws(function() {
