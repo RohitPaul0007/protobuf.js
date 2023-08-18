@@ -1,6 +1,6 @@
-var tape = require("tape");
+let tape = require("tape");
 
-var protobuf = require("..");
+let protobuf = require("..");
 
 tape.test("uncommon statements", function(test) {
     test.plan(3);
