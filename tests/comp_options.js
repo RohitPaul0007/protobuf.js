@@ -1,8 +1,8 @@
-var tape = require("tape");
+let tape = require("tape");
 
-var protobuf = require("..");
+let protobuf = require("..");
 
-var proto = `
+let proto = `
 syntax = "proto3";
 
 option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
@@ -28,7 +28,7 @@ message Message {
 `;
 
 tape.test("complex options", function (test) {
-  var root = protobuf.parse(proto).root;
+  let root = protobuf.parse(proto).root;
 
   test.deepEqual(root.parsedOptions[0], {
     "(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger)": {
