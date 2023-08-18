@@ -1,13 +1,13 @@
 /*eslint-disable block-scoped-var, id-length, no-control-regex, no-magic-numbers, no-prototype-builtins, no-redeclare, no-shadow, no-var, sort-vars*/
 "use strict";
 
-var $protobuf = require("../../minimal");
+let $protobuf = require("../../minimal");
 
 // Common aliases
-var $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
+let $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
 
 // Exported root namespace
-var $root = $protobuf.roots.test_type_url || ($protobuf.roots.test_type_url = {});
+let $root = $protobuf.roots.test_type_url || ($protobuf.roots.test_type_url = {});
 
 $root.TypeUrlTest = (function() {
 
@@ -28,7 +28,7 @@ $root.TypeUrlTest = (function() {
      */
     function TypeUrlTest(properties) {
         if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
@@ -97,7 +97,7 @@ $root.TypeUrlTest = (function() {
     TypeUrlTest.decode = function decode(reader, length) {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.TypeUrlTest();
+        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.TypeUrlTest();
         while (reader.pos < end) {
             var tag = reader.uint32();
             switch (tag >>> 3) {
@@ -140,7 +140,7 @@ $root.TypeUrlTest = (function() {
         if (typeof message !== "object" || message === null)
             return "object expected";
         if (message.nested != null && message.hasOwnProperty("nested")) {
-            var error = $root.TypeUrlTest.Nested.verify(message.nested);
+            let error = $root.TypeUrlTest.Nested.verify(message.nested);
             if (error)
                 return "nested." + error;
         }
@@ -158,7 +158,7 @@ $root.TypeUrlTest = (function() {
     TypeUrlTest.fromObject = function fromObject(object) {
         if (object instanceof $root.TypeUrlTest)
             return object;
-        var message = new $root.TypeUrlTest();
+        let message = new $root.TypeUrlTest();
         if (object.nested != null) {
             if (typeof object.nested !== "object")
                 throw TypeError(".TypeUrlTest.nested: object expected");
@@ -179,7 +179,7 @@ $root.TypeUrlTest = (function() {
     TypeUrlTest.toObject = function toObject(message, options) {
         if (!options)
             options = {};
-        var object = {};
+        let object = {};
         if (options.defaults)
             object.nested = null;
         if (message.nested != null && message.hasOwnProperty("nested"))
@@ -232,7 +232,7 @@ $root.TypeUrlTest = (function() {
          */
         function Nested(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -301,9 +301,9 @@ $root.TypeUrlTest = (function() {
         Nested.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.TypeUrlTest.Nested();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.TypeUrlTest.Nested();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
                 case 1:
                     message.a = reader.string();
@@ -360,7 +360,7 @@ $root.TypeUrlTest = (function() {
         Nested.fromObject = function fromObject(object) {
             if (object instanceof $root.TypeUrlTest.Nested)
                 return object;
-            var message = new $root.TypeUrlTest.Nested();
+            let message = new $root.TypeUrlTest.Nested();
             if (object.a != null)
                 message.a = String(object.a);
             return message;
@@ -378,7 +378,7 @@ $root.TypeUrlTest = (function() {
         Nested.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults)
                 object.a = "";
             if (message.a != null && message.hasOwnProperty("a"))
