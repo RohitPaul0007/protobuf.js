@@ -1,13 +1,13 @@
-var tape = require("tape");
+let tape = require("tape");
 
-var protobuf = require("..");
-var LongBits = protobuf.util.LongBits;
-var Long = protobuf.util.Long;
+let protobuf = require("..");
+let LongBits = protobuf.util.LongBits;
+let Long = protobuf.util.Long;
 
 tape.test("longbits", function(test) {
 
     test.test(test.name + " - zero", function(test) {
-        var zero = LongBits.zero;
+        let zero = LongBits.zero;
         test.equal(zero.lo, 0, "should have low bits of 0");
         test.equal(zero.hi, 0, "should have high bits of 0");
         test.equal(zero.toNumber(), 0, "should convert to number 0 (signed)");
@@ -56,14 +56,14 @@ tape.test("longbits", function(test) {
         { low: 0, high: -1, unsigned: false, length: 10 }
     ]
     .forEach(function(value) {
-        var long = Long.fromValue(value);
+        let long = Long.fromValue(value);
         test.equal(long.unsigned, value.unsigned, long + " should be signed/unsigned");
-        var bits = LongBits.from(value);
+        let bits = LongBits.from(value);
         test.equal(bits.lo, long.low >>> 0, long + " should have equal low bits");
         test.equal(bits.hi, long.high >>> 0, long + " should have equal high bits");
         test.equal(bits.length(), value.length, long + " should return an equal length");
         test.equal(bits.toNumber(value.unsigned), long.toNumber(), long + " should convert to an equal number");
-        var number = long.toNumber(value.unsigned);
+        let number = long.toNumber(value.unsigned);
         if (number <= 9007199254740991 && number >= -9007199254740991)
             test.same(LongBits.fromNumber(number), bits, long + " should convert hence and forth equally (where safe)");
         test.same(bits.toLong(value.unsigned), long, long + " should convert to an equal Long");
@@ -74,8 +74,8 @@ tape.test("longbits", function(test) {
         test.same(protobuf.util.longFromHash(comp, long.unsigned), long, long + " should convert back to an equal value through util.longFromHash");
     });
 
-    var num = -4294967296 * 4294967296;
-    var bits = LongBits.fromNumber(num);
+    let num = -4294967296 * 4294967296;
+    let bits = LongBits.fromNumber(num);
     test.same(bits, { lo: 0, hi: 0 }, "lo and hi should properly overflow when converting " + num);
 
     test.end();
