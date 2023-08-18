@@ -1,8 +1,8 @@
-var tape = require("tape");
+let tape = require("tape");
 
-var protobuf = require("..");
+let protobuf = require("..");
 
-var proto = "syntax = \"proto3\";\
+let proto = "syntax = \"proto3\";\
 import \"google/protobuf/descriptor.proto\";\
 message MyOptions {\
   string a = 1;\
@@ -25,9 +25,9 @@ enum TestEnum {\
 }";
 
 tape.test("options in textformat", function(test) {
-    var root = protobuf.parse(proto).root;
-    var Test = root.lookup("Test");
-    var TestEnum = root.lookup("TestEnum");
+    let root = protobuf.parse(proto).root;
+    let Test = root.lookup("Test");
+    let TestEnum = root.lookup("TestEnum");
     test.same(Test.fields.value.options, { "(my_options).a": "foo", "(my_options).b": "bar" }, "should parse correctly");
     test.same(Test.fields.value2.options, { "(my_options).a": "foo", "(my_options).b.c": "bar" }, "should parse correctly when nested");
     test.same(Test.fields.value3.options, { "(my_options).a": "foo", "(my_options).b": "bar" }, "should parse correctly when comma-separated");
