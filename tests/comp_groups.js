@@ -1,15 +1,15 @@
-var tape = require("tape");
+let tape = require("tape");
 
-var protobuf = require("..");
+let protobuf = require("..");
 
-var protoRequired = "message Test {\
+let protoRequired = "message Test {\
     required group MyGroup = 1 {\
         option foo = \"bar\";\
         required uint32 a = 2;\
     };\
 }";
 
-var protoRepeated = "message Test {\
+let protoRepeated = "message Test {\
     repeated group MyGroup = 1 {\
         option foo = \"bar\";\
         required uint32 a = 2;\
@@ -17,12 +17,12 @@ var protoRepeated = "message Test {\
 }";
 
 tape.test("legacy groups", function(test) {
-    var root = protobuf.parse(protoRequired).root;
+    let root = protobuf.parse(protoRequired).root;
 
-    var Test = root.resolveAll().lookup("Test");
-    var MyGroupType = Test.get("MyGroup");
-    var MyGroupField = Test.get("myGroup");
-    var msg = {
+    let Test = root.resolveAll().lookup("Test");
+    let MyGroupType = Test.get("MyGroup");
+    let MyGroupField = Test.get("myGroup");
+    let msg = {
         myGroup: {
             a: 111
         }
@@ -31,15 +31,15 @@ tape.test("legacy groups", function(test) {
     test.ok(MyGroupType instanceof protobuf.Type && MyGroupField instanceof protobuf.Field, "should parse to a type and a field");
     test.equal(MyGroupType.group, true, "should have the group flag set on the type");
     test.equal(MyGroupField.resolvedType, MyGroupType, "should reference the type from the field");
-    var json = MyGroupType.toJSON();
+    let json = MyGroupType.toJSON();
     test.equal(json.group, true, "should export group=true to JSON");
-    var MyGroupType2 = protobuf.Type.fromJSON("MyGroup", json);
+    let MyGroupType2 = protobuf.Type.fromJSON("MyGroup", json);
     test.equal(MyGroupType2.group, true, "should import group=true from JSON");
     // NOTE: fromJSON alone does not add the sister-field.
     // The parser does this explicitly and the field is part of the exported JSON itself.
 
     test.test(test.name + " - should encode required", (function(Test, msg) { return function(test) {
-        var buf = Test.encode(msg).finish();
+        let buf = Test.encode(msg).finish();
         test.equal(buf.length, 4, "a total of 4 bytes");
         test.equal(buf[0], 1 << 3 | 3, "id 1, wireType 3");
         test.equal(buf[1], 2 << 3 | 0, "id 2, wireType 0");
@@ -61,7 +61,7 @@ tape.test("legacy groups", function(test) {
     };
 
     test.test(test.name + " - should encode repeated", (function(Test, msg) { return function(test) {
-        var buf = Test.encode(msg).finish();
+        let buf = Test.encode(msg).finish();
         test.equal(buf.length, 8, "a total of 8 bytes");
         test.equal(buf[0], 1 << 3 | 3, "id 1, wireType 3");
         test.equal(buf[1], 2 << 3 | 0, "id 2, wireType 0");
