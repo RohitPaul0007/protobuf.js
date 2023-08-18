@@ -438,7 +438,7 @@ $root.Message = (function() {
             if (!Array.isArray(object.enumRepeated))
                 throw TypeError(".Message.enumRepeated: array expected");
             message.enumRepeated = [];
-            for (var i = 0; i < object.enumRepeated.length; ++i)
+            for (let i = 0; i < object.enumRepeated.length; ++i)
                 switch (object.enumRepeated[i]) {
                 default:
                 case "ONE":
