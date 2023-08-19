@@ -1,13 +1,13 @@
 /*eslint-disable block-scoped-var, id-length, no-control-regex, no-magic-numbers, no-prototype-builtins, no-redeclare, no-shadow, no-var, sort-vars*/
 "use strict";
 
-var $protobuf = require("../../minimal");
+let $protobuf = require("../../minimal");
 
 // Common aliases
-var $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
+let $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
 
 // Exported root namespace
-var $root = $protobuf.roots["test_rpc-reserved"] || ($protobuf.roots["test_rpc-reserved"] = {});
+let $root = $protobuf.roots["test_rpc-reserved"] || ($protobuf.roots["test_rpc-reserved"] = {});
 
 $root.MyService = (function() {
 
@@ -96,7 +96,7 @@ $root.MyRequest = (function() {
      */
     function MyRequest(properties) {
         if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
@@ -165,9 +165,9 @@ $root.MyRequest = (function() {
     MyRequest.decode = function decode(reader, length) {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.MyRequest();
+        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.MyRequest();
         while (reader.pos < end) {
-            var tag = reader.uint32();
+            let tag = reader.uint32();
             switch (tag >>> 3) {
             case 1:
                 message.path = reader.string();
@@ -224,7 +224,7 @@ $root.MyRequest = (function() {
     MyRequest.fromObject = function fromObject(object) {
         if (object instanceof $root.MyRequest)
             return object;
-        var message = new $root.MyRequest();
+        let message = new $root.MyRequest();
         if (object.path != null)
             message.path = String(object.path);
         return message;
@@ -242,7 +242,7 @@ $root.MyRequest = (function() {
     MyRequest.toObject = function toObject(message, options) {
         if (!options)
             options = {};
-        var object = {};
+        let object = {};
         if (options.defaults)
             object.path = "";
         if (message.path != null && message.hasOwnProperty("path"))
@@ -298,7 +298,7 @@ $root.MyResponse = (function() {
      */
     function MyResponse(properties) {
         if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
@@ -367,9 +367,9 @@ $root.MyResponse = (function() {
     MyResponse.decode = function decode(reader, length) {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.MyResponse();
+        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.MyResponse();
         while (reader.pos < end) {
-            var tag = reader.uint32();
+            let tag = reader.uint32();
             switch (tag >>> 3) {
             case 2:
                 message.status = reader.int32();
@@ -398,7 +398,7 @@ $root.MyResponse = (function() {
         return this.decode(reader, reader.uint32());
     };
 
-    /**
+    /*
      * Verifies a MyResponse message.
      * @function verify
      * @memberof MyResponse
@@ -415,7 +415,7 @@ $root.MyResponse = (function() {
         return null;
     };
 
-    /**
+    /*
      * Creates a MyResponse message from a plain object. Also converts values to their respective internal types.
      * @function fromObject
      * @memberof MyResponse
@@ -426,13 +426,13 @@ $root.MyResponse = (function() {
     MyResponse.fromObject = function fromObject(object) {
         if (object instanceof $root.MyResponse)
             return object;
-        var message = new $root.MyResponse();
+        let message = new $root.MyResponse();
         if (object.status != null)
             message.status = object.status | 0;
         return message;
     };
 
-    /**
+    /*
      * Creates a plain object from a MyResponse message. Also converts values to other types if specified.
      * @function toObject
      * @memberof MyResponse
@@ -444,7 +444,7 @@ $root.MyResponse = (function() {
     MyResponse.toObject = function toObject(message, options) {
         if (!options)
             options = {};
-        var object = {};
+        let object = {};
         if (options.defaults)
             object.status = 0;
         if (message.status != null && message.hasOwnProperty("status"))
