@@ -398,7 +398,7 @@ $root.MyResponse = (function() {
         return this.decode(reader, reader.uint32());
     };
 
-    /**
+    /*
      * Verifies a MyResponse message.
      * @function verify
      * @memberof MyResponse
@@ -415,7 +415,7 @@ $root.MyResponse = (function() {
         return null;
     };
 
-    /**
+    /*
      * Creates a MyResponse message from a plain object. Also converts values to their respective internal types.
      * @function fromObject
      * @memberof MyResponse
@@ -432,7 +432,7 @@ $root.MyResponse = (function() {
         return message;
     };
 
-    /**
+    /*
      * Creates a plain object from a MyResponse message. Also converts values to other types if specified.
      * @function toObject
      * @memberof MyResponse
