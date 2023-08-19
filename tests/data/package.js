@@ -1,13 +1,13 @@
 /*eslint-disable block-scoped-var, id-length, no-control-regex, no-magic-numbers, no-prototype-builtins, no-redeclare, no-shadow, no-var, sort-vars*/
 "use strict";
 
-var $protobuf = require("../../minimal");
+let $protobuf = require("../../minimal");
 
 // Common aliases
-var $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
+let $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
 
 // Exported root namespace
-var $root = $protobuf.roots.test_package || ($protobuf.roots.test_package = {});
+let $root = $protobuf.roots.test_package || ($protobuf.roots.test_package = {});
 
 $root.Package = (function() {
 
@@ -50,7 +50,7 @@ $root.Package = (function() {
         this.devDependencies = {};
         this.cliDependencies = [];
         if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
@@ -232,26 +232,26 @@ $root.Package = (function() {
         if (message.homepage != null && Object.hasOwnProperty.call(message, "homepage"))
             writer.uint32(/* id 8, wireType 2 =*/66).string(message.homepage);
         if (message.keywords != null && message.keywords.length)
-            for (var i = 0; i < message.keywords.length; ++i)
+            for (let i = 0; i < message.keywords.length; ++i)
                 writer.uint32(/* id 9, wireType 2 =*/74).string(message.keywords[i]);
         if (message.main != null && Object.hasOwnProperty.call(message, "main"))
             writer.uint32(/* id 10, wireType 2 =*/82).string(message.main);
         if (message.bin != null && Object.hasOwnProperty.call(message, "bin"))
-            for (var keys = Object.keys(message.bin), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(message.bin), i = 0; i < keys.length; ++i)
                 writer.uint32(/* id 11, wireType 2 =*/90).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 2 =*/18).string(message.bin[keys[i]]).ldelim();
         if (message.scripts != null && Object.hasOwnProperty.call(message, "scripts"))
-            for (var keys = Object.keys(message.scripts), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(message.scripts), i = 0; i < keys.length; ++i)
                 writer.uint32(/* id 12, wireType 2 =*/98).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 2 =*/18).string(message.scripts[keys[i]]).ldelim();
         if (message.dependencies != null && Object.hasOwnProperty.call(message, "dependencies"))
-            for (var keys = Object.keys(message.dependencies), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(message.dependencies), i = 0; i < keys.length; ++i)
                 writer.uint32(/* id 13, wireType 2 =*/106).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 2 =*/18).string(message.dependencies[keys[i]]).ldelim();
         if (message.devDependencies != null && Object.hasOwnProperty.call(message, "devDependencies"))
-            for (var keys = Object.keys(message.devDependencies), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(message.devDependencies), i = 0; i < keys.length; ++i)
                 writer.uint32(/* id 15, wireType 2 =*/122).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 2 =*/18).string(message.devDependencies[keys[i]]).ldelim();
         if (message.types != null && Object.hasOwnProperty.call(message, "types"))
             writer.uint32(/* id 17, wireType 2 =*/138).string(message.types);
         if (message.cliDependencies != null && message.cliDependencies.length)
-            for (var i = 0; i < message.cliDependencies.length; ++i)
+            for (let i = 0; i < message.cliDependencies.length; ++i)
                 writer.uint32(/* id 18, wireType 2 =*/146).string(message.cliDependencies[i]);
         if (message.versionScheme != null && Object.hasOwnProperty.call(message, "versionScheme"))
             writer.uint32(/* id 19, wireType 2 =*/154).string(message.versionScheme);
@@ -285,9 +285,9 @@ $root.Package = (function() {
     Package.decode = function decode(reader, length) {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Package(), key, value;
+        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.Package(), key, value;
         while (reader.pos < end) {
-            var tag = reader.uint32();
+            let tag = reader.uint32();
             switch (tag >>> 3) {
             case 1:
                 message.name = reader.string();
@@ -327,11 +327,11 @@ $root.Package = (function() {
             case 11:
                 if (message.bin === $util.emptyObject)
                     message.bin = {};
-                var end2 = reader.uint32() + reader.pos;
+                let end2 = reader.uint32() + reader.pos;
                 key = "";
                 value = "";
                 while (reader.pos < end2) {
-                    var tag2 = reader.uint32();
+                    let tag2 = reader.uint32();
                     switch (tag2 >>> 3) {
                     case 1:
                         key = reader.string();
@@ -349,11 +349,11 @@ $root.Package = (function() {
             case 12:
                 if (message.scripts === $util.emptyObject)
                     message.scripts = {};
-                var end2 = reader.uint32() + reader.pos;
+                let end2 = reader.uint32() + reader.pos;
                 key = "";
                 value = "";
                 while (reader.pos < end2) {
-                    var tag2 = reader.uint32();
+                    let tag2 = reader.uint32();
                     switch (tag2 >>> 3) {
                     case 1:
                         key = reader.string();
@@ -371,11 +371,11 @@ $root.Package = (function() {
             case 13:
                 if (message.dependencies === $util.emptyObject)
                     message.dependencies = {};
-                var end2 = reader.uint32() + reader.pos;
+                let end2 = reader.uint32() + reader.pos;
                 key = "";
                 value = "";
                 while (reader.pos < end2) {
-                    var tag2 = reader.uint32();
+                    let tag2 = reader.uint32();
                     switch (tag2 >>> 3) {
                     case 1:
                         key = reader.string();
@@ -393,11 +393,11 @@ $root.Package = (function() {
             case 15:
                 if (message.devDependencies === $util.emptyObject)
                     message.devDependencies = {};
-                var end2 = reader.uint32() + reader.pos;
+                let end2 = reader.uint32() + reader.pos;
                 key = "";
                 value = "";
                 while (reader.pos < end2) {
-                    var tag2 = reader.uint32();
+                    let tag2 = reader.uint32();
                     switch (tag2 >>> 3) {
                     case 1:
                         key = reader.string();
@@ -474,7 +474,7 @@ $root.Package = (function() {
             if (!$util.isString(message.license))
                 return "license: string expected";
         if (message.repository != null && message.hasOwnProperty("repository")) {
-            var error = $root.Package.Repository.verify(message.repository);
+            let error = $root.Package.Repository.verify(message.repository);
             if (error)
                 return "repository." + error;
         }
@@ -487,7 +487,7 @@ $root.Package = (function() {
         if (message.keywords != null && message.hasOwnProperty("keywords")) {
             if (!Array.isArray(message.keywords))
                 return "keywords: array expected";
-            for (var i = 0; i < message.keywords.length; ++i)
+            for (let i = 0; i < message.keywords.length; ++i)
                 if (!$util.isString(message.keywords[i]))
                     return "keywords: string[] expected";
         }
@@ -497,32 +497,32 @@ $root.Package = (function() {
         if (message.bin != null && message.hasOwnProperty("bin")) {
             if (!$util.isObject(message.bin))
                 return "bin: object expected";
-            var key = Object.keys(message.bin);
-            for (var i = 0; i < key.length; ++i)
+            let key = Object.keys(message.bin);
+            for (let i = 0; i < key.length; ++i)
                 if (!$util.isString(message.bin[key[i]]))
                     return "bin: string{k:string} expected";
         }
         if (message.scripts != null && message.hasOwnProperty("scripts")) {
             if (!$util.isObject(message.scripts))
                 return "scripts: object expected";
-            var key = Object.keys(message.scripts);
-            for (var i = 0; i < key.length; ++i)
+            let key = Object.keys(message.scripts);
+            for (let i = 0; i < key.length; ++i)
                 if (!$util.isString(message.scripts[key[i]]))
                     return "scripts: string{k:string} expected";
         }
         if (message.dependencies != null && message.hasOwnProperty("dependencies")) {
             if (!$util.isObject(message.dependencies))
                 return "dependencies: object expected";
-            var key = Object.keys(message.dependencies);
-            for (var i = 0; i < key.length; ++i)
+            let key = Object.keys(message.dependencies);
+            for (let i = 0; i < key.length; ++i)
                 if (!$util.isString(message.dependencies[key[i]]))
                     return "dependencies: string{k:string} expected";
         }
         if (message.devDependencies != null && message.hasOwnProperty("devDependencies")) {
             if (!$util.isObject(message.devDependencies))
                 return "devDependencies: object expected";
-            var key = Object.keys(message.devDependencies);
-            for (var i = 0; i < key.length; ++i)
+            let key = Object.keys(message.devDependencies);
+            for (let i = 0; i < key.length; ++i)
                 if (!$util.isString(message.devDependencies[key[i]]))
                     return "devDependencies: string{k:string} expected";
         }
@@ -532,7 +532,7 @@ $root.Package = (function() {
         if (message.cliDependencies != null && message.hasOwnProperty("cliDependencies")) {
             if (!Array.isArray(message.cliDependencies))
                 return "cliDependencies: array expected";
-            for (var i = 0; i < message.cliDependencies.length; ++i)
+            for (let i = 0; i < message.cliDependencies.length; ++i)
                 if (!$util.isString(message.cliDependencies[i]))
                     return "cliDependencies: string[] expected";
         }
@@ -550,7 +550,7 @@ $root.Package = (function() {
     Package.fromObject = function fromObject(object) {
         if (object instanceof $root.Package)
             return object;
-        var message = new $root.Package();
+        let message = new $root.Package();
         if (object.name != null)
             message.name = String(object.name);
         if (object.version != null)
@@ -576,7 +576,7 @@ $root.Package = (function() {
             if (!Array.isArray(object.keywords))
                 throw TypeError(".Package.keywords: array expected");
             message.keywords = [];
-            for (var i = 0; i < object.keywords.length; ++i)
+            for (let i = 0; i < object.keywords.length; ++i)
                 message.keywords[i] = String(object.keywords[i]);
         }
         if (object.main != null)
@@ -585,28 +585,28 @@ $root.Package = (function() {
             if (typeof object.bin !== "object")
                 throw TypeError(".Package.bin: object expected");
             message.bin = {};
-            for (var keys = Object.keys(object.bin), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(object.bin), i = 0; i < keys.length; ++i)
                 message.bin[keys[i]] = String(object.bin[keys[i]]);
         }
         if (object.scripts) {
             if (typeof object.scripts !== "object")
                 throw TypeError(".Package.scripts: object expected");
             message.scripts = {};
-            for (var keys = Object.keys(object.scripts), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(object.scripts), i = 0; i < keys.length; ++i)
                 message.scripts[keys[i]] = String(object.scripts[keys[i]]);
         }
         if (object.dependencies) {
             if (typeof object.dependencies !== "object")
                 throw TypeError(".Package.dependencies: object expected");
             message.dependencies = {};
-            for (var keys = Object.keys(object.dependencies), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(object.dependencies), i = 0; i < keys.length; ++i)
                 message.dependencies[keys[i]] = String(object.dependencies[keys[i]]);
         }
         if (object.devDependencies) {
             if (typeof object.devDependencies !== "object")
                 throw TypeError(".Package.devDependencies: object expected");
             message.devDependencies = {};
-            for (var keys = Object.keys(object.devDependencies), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(object.devDependencies), i = 0; i < keys.length; ++i)
                 message.devDependencies[keys[i]] = String(object.devDependencies[keys[i]]);
         }
         if (object.types != null)
@@ -615,7 +615,7 @@ $root.Package = (function() {
             if (!Array.isArray(object.cliDependencies))
                 throw TypeError(".Package.cliDependencies: array expected");
             message.cliDependencies = [];
-            for (var i = 0; i < object.cliDependencies.length; ++i)
+            for (let i = 0; i < object.cliDependencies.length; ++i)
                 message.cliDependencies[i] = String(object.cliDependencies[i]);
         }
         return message;
@@ -633,7 +633,7 @@ $root.Package = (function() {
     Package.toObject = function toObject(message, options) {
         if (!options)
             options = {};
-        var object = {};
+        let object = {};
         if (options.arrays || options.defaults) {
             object.keywords = [];
             object.cliDependencies = [];
@@ -675,37 +675,37 @@ $root.Package = (function() {
             object.homepage = message.homepage;
         if (message.keywords && message.keywords.length) {
             object.keywords = [];
-            for (var j = 0; j < message.keywords.length; ++j)
+            for (let j = 0; j < message.keywords.length; ++j)
                 object.keywords[j] = message.keywords[j];
         }
         if (message.main != null && message.hasOwnProperty("main"))
             object.main = message.main;
-        var keys2;
+        let keys2;
         if (message.bin && (keys2 = Object.keys(message.bin)).length) {
             object.bin = {};
-            for (var j = 0; j < keys2.length; ++j)
+            for (let j = 0; j < keys2.length; ++j)
                 object.bin[keys2[j]] = message.bin[keys2[j]];
         }
         if (message.scripts && (keys2 = Object.keys(message.scripts)).length) {
             object.scripts = {};
-            for (var j = 0; j < keys2.length; ++j)
+            for (let j = 0; j < keys2.length; ++j)
                 object.scripts[keys2[j]] = message.scripts[keys2[j]];
         }
         if (message.dependencies && (keys2 = Object.keys(message.dependencies)).length) {
             object.dependencies = {};
-            for (var j = 0; j < keys2.length; ++j)
+            for (let j = 0; j < keys2.length; ++j)
                 object.dependencies[keys2[j]] = message.dependencies[keys2[j]];
         }
         if (message.devDependencies && (keys2 = Object.keys(message.devDependencies)).length) {
             object.devDependencies = {};
-            for (var j = 0; j < keys2.length; ++j)
+            for (let j = 0; j < keys2.length; ++j)
                 object.devDependencies[keys2[j]] = message.devDependencies[keys2[j]];
         }
         if (message.types != null && message.hasOwnProperty("types"))
             object.types = message.types;
         if (message.cliDependencies && message.cliDependencies.length) {
             object.cliDependencies = [];
-            for (var j = 0; j < message.cliDependencies.length; ++j)
+            for (let j = 0; j < message.cliDependencies.length; ++j)
                 object.cliDependencies[j] = message.cliDependencies[j];
         }
         if (message.versionScheme != null && message.hasOwnProperty("versionScheme"))
@@ -759,7 +759,7 @@ $root.Package = (function() {
          */
         function Repository(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -838,9 +838,9 @@ $root.Package = (function() {
         Repository.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Package.Repository();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.Package.Repository();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
                 case 1:
                     message.type = reader.string();
@@ -903,7 +903,7 @@ $root.Package = (function() {
         Repository.fromObject = function fromObject(object) {
             if (object instanceof $root.Package.Repository)
                 return object;
-            var message = new $root.Package.Repository();
+            let message = new $root.Package.Repository();
             if (object.type != null)
                 message.type = String(object.type);
             if (object.url != null)
@@ -923,7 +923,7 @@ $root.Package = (function() {
         Repository.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults) {
                 object.type = "";
                 object.url = "";
