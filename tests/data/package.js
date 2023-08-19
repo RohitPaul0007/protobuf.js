@@ -287,7 +287,7 @@ $root.Package = (function() {
             reader = $Reader.create(reader);
         let end = length === undefined ? reader.len : reader.pos + length, message = new $root.Package(), key, value;
         while (reader.pos < end) {
-            var tag = reader.uint32();
+            let tag = reader.uint32();
             switch (tag >>> 3) {
             case 1:
                 message.name = reader.string();
