@@ -1,13 +1,13 @@
 /*eslint-disable block-scoped-var, id-length, no-control-regex, no-magic-numbers, no-prototype-builtins, no-redeclare, no-shadow, no-var, sort-vars*/
 "use strict";
 
-var $protobuf = require("../../minimal");
+let $protobuf = require("../../minimal");
 
 // Common aliases
-var $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
+let $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
 
 // Exported root namespace
-var $root = $protobuf.roots.test_comments || ($protobuf.roots.test_comments = {});
+let $root = $protobuf.roots.test_comments || ($protobuf.roots.test_comments = {});
 
 $root.Test1 = (function() {
 
@@ -33,7 +33,7 @@ $root.Test1 = (function() {
      */
     function Test1(properties) {
         if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
@@ -122,9 +122,9 @@ $root.Test1 = (function() {
     Test1.decode = function decode(reader, length) {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Test1();
+        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.Test1();
         while (reader.pos < end) {
-            var tag = reader.uint32();
+            let tag = reader.uint32();
             switch (tag >>> 3) {
             case 1:
                 message.field1 = reader.string();
@@ -193,7 +193,7 @@ $root.Test1 = (function() {
     Test1.fromObject = function fromObject(object) {
         if (object instanceof $root.Test1)
             return object;
-        var message = new $root.Test1();
+        let message = new $root.Test1();
         if (object.field1 != null)
             message.field1 = String(object.field1);
         if (object.field2 != null)
@@ -215,7 +215,7 @@ $root.Test1 = (function() {
     Test1.toObject = function toObject(message, options) {
         if (!options)
             options = {};
-        var object = {};
+        let object = {};
         if (options.defaults) {
             object.field1 = "";
             object.field2 = 0;
@@ -277,7 +277,7 @@ $root.Test2 = (function() {
      */
     function Test2(properties) {
         if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
@@ -336,7 +336,7 @@ $root.Test2 = (function() {
     Test2.decode = function decode(reader, length) {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Test2();
+        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.Test2();
         while (reader.pos < end) {
             var tag = reader.uint32();
             switch (tag >>> 3) {
@@ -445,7 +445,7 @@ $root.Test2 = (function() {
  * @property {number} FIVE=5 Leading comment for value with both types of comments after field with trailing comment.
  */
 $root.Test3 = (function() {
-    var valuesById = {}, values = Object.create(valuesById);
+    let valuesById = {}, values = Object.create(valuesById);
     values[valuesById[1] = "ONE"] = 1;
     values[valuesById[2] = "TWO"] = 2;
     values[valuesById[3] = "THREE"] = 3;
