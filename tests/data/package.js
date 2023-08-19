@@ -935,7 +935,7 @@ $root.Package = (function() {
             return object;
         };
 
-        /**
+        /*
          * Converts this Repository to JSON.
          * @function toJSON
          * @memberof Package.Repository
@@ -946,7 +946,7 @@ $root.Package = (function() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
-        /**
+        /*
          * Gets the default type url for Repository
          * @function getTypeUrl
          * @memberof Package.Repository
