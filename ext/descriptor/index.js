@@ -1,8 +1,8 @@
 "use strict";
-var $protobuf = require("../..");
+let $protobuf = require("../..");
 module.exports = exports = $protobuf.descriptor = $protobuf.Root.fromJSON(require("../../google/protobuf/descriptor.json")).lookup(".google.protobuf");
 
-var Namespace = $protobuf.Namespace,
+let Namespace = $protobuf.Namespace,
     Root      = $protobuf.Root,
     Enum      = $protobuf.Enum,
     Type      = $protobuf.Type,
