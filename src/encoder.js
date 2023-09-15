@@ -1,7 +1,7 @@
 "use strict";
 module.exports = encoder;
 
-var Enum     = require("./enum"),
+let Enum     = require("./enum"),
     types    = require("./types"),
     util     = require("./util");
 
